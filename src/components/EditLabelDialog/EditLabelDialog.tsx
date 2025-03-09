@@ -13,39 +13,42 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { addNewLabel } from "./action";
 import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
+import { editLabel } from "./action";
 
-function NewLabelDialog({
+function EditLabelDialog({
   triggerChild,
   labelData,
+  currentLabel,
 }: {
   triggerChild: React.ReactNode;
   labelData: string[];
+  currentLabel: string;
 }) {
-  const [newLabel, setNewLabel] = useState("");
+  const [open, setOpen] = useState(false);
+  const [newLabel, setNewLabel] = useState(currentLabel);
   const [btnLoadingState, setBtnLoadingState] = useState(false);
 
   const handleClick = async () => {
     try {
       setBtnLoadingState(true);
-      await addNewLabel(labelData, newLabel);
-      setNewLabel("");
+      await editLabel(labelData, newLabel, currentLabel);
+      setOpen(false);
+      setNewLabel(newLabel);
       setBtnLoadingState(false);
     } catch (error) {
       alert(error);
-      setNewLabel("");
       setBtnLoadingState(false);
     }
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{triggerChild}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add New Label</DialogTitle>
+          <DialogTitle>Edit Label</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -64,11 +67,7 @@ function NewLabelDialog({
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button
-              disabled={btnLoadingState}
-              onClick={() => setNewLabel("")}
-              variant={"destructive"}
-            >
+            <Button disabled={btnLoadingState} variant={"destructive"}>
               Cancel
             </Button>
           </DialogClose>
@@ -85,4 +84,4 @@ function NewLabelDialog({
     </Dialog>
   );
 }
-export default NewLabelDialog;
+export default EditLabelDialog;

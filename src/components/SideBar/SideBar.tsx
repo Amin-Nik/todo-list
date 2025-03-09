@@ -15,7 +15,7 @@ function SideBar({
   labels: string[];
   filterByLabelEvent: (label: string) => void;
 }) {
-  const iconClassName = "size-7! inline-block ml-4";
+  const iconClassName = "size-6! inline-block ml-2";
 
   return (
     <>

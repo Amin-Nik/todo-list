@@ -8,7 +8,7 @@ export default async function Home() {
       return await GetUser();
     },
     ["label"],
-    { tags: ["label"], revalidate: 3 }
+    { tags: ["label"], revalidate: 1 }
   );
   const tasks = await GetTask();
   const user = await getCachedUser();
