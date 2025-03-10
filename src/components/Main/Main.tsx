@@ -15,7 +15,13 @@ function Main({ tasks, user }: { tasks: Task[] | undefined; user: User }) {
     setAllTasks: function () {
       setFilteredTask(tasks);
     },
-    todaysTask: function () {},
+    todaysTask: function () {
+      const today = new Date();
+      const filteredTask = tasks?.filter(
+        (tsk) => tsk.date.toDateString() == today.toDateString()
+      );
+      setFilteredTask(filteredTask);
+    },
     importantTasks: function () {
       const filteredTask = tasks?.filter((tsk) => tsk.isImportant);
       setFilteredTask(filteredTask);

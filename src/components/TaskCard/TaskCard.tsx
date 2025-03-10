@@ -27,7 +27,7 @@ function TaskCard({ data }: { data: Task | undefined }) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <DatePicker />
+        <DatePicker taskDate={data?.date} />
         <div className="mt-3.5 flex flex-wrap gap-1">
           {data?.labels.map((Label, index) => (
             <LittleLabel key={index} text={Label} />
