@@ -10,35 +10,44 @@ import LabelSection from "../LabelSection/LabelSection";
 
 function SideBar({
   labels,
-  filterByLabelEvent,
+  filterEvent,
 }: {
   labels: string[];
-  filterByLabelEvent: (label: string) => void;
+  filterEvent: {
+    filterByLabels: (label: string) => void;
+    setAllTasks: () => void;
+    todaysTask: () => void;
+    importantTasks: () => void;
+    completeTasks: () => void;
+  };
 }) {
   const iconClassName = "size-6! inline-block ml-2";
 
   return (
     <>
-      {/* side bar static buttons */}
       <section className="fixed left-0 w-70 h-[91vh] py-2 overflow-auto">
         <SideBtn
+          clickHandler={filterEvent.setAllTasks}
           icon={<RectangleStackIcon className={iconClassName} />}
           text="All Task"
         />
         <SideBtn
+          clickHandler={filterEvent.todaysTask}
           icon={<ClockIcon className={iconClassName} />}
           text="Today's Task"
         />
         <SideBtn
+          clickHandler={filterEvent.importantTasks}
           icon={<StarIcon className={iconClassName} />}
           text="Important Task"
         />
         <SideBtn
+          clickHandler={filterEvent.completeTasks}
           icon={<DocumentCheckIcon className={iconClassName} />}
           text="Completed Task"
         />
         <LabelSection
-          filterByLabelEvent={filterByLabelEvent}
+          filterByLabelEvent={filterEvent.filterByLabels}
           labelData={labels}
         />
       </section>
@@ -47,3 +56,4 @@ function SideBar({
 }
 
 export default SideBar;
+// (label: string) => void;

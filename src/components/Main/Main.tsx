@@ -7,14 +7,28 @@ import { useState } from "react";
 function Main({ tasks, user }: { tasks: Task[] | undefined; user: User }) {
   const [filteredTask, setFilteredTask] = useState(tasks);
 
-  function filterByLabel(label: string) {
-    const filteredTask = tasks?.filter((tsk) => tsk.labels.includes(label));
-    setFilteredTask(filteredTask);
-  }
+  const filter = {
+    filterByLabels: function (label: string) {
+      const filteredTask = tasks?.filter((tsk) => tsk.labels.includes(label));
+      setFilteredTask(filteredTask);
+    },
+    setAllTasks: function () {
+      setFilteredTask(tasks);
+    },
+    todaysTask: function () {},
+    importantTasks: function () {
+      const filteredTask = tasks?.filter((tsk) => tsk.isImportant);
+      setFilteredTask(filteredTask);
+    },
+    completeTasks: function () {
+      const filteredTask = tasks?.filter((tsk) => tsk.isComplete);
+      setFilteredTask(filteredTask);
+    },
+  };
 
   return (
     <main className="pl-80 ">
-      <SideBar filterByLabelEvent={filterByLabel} labels={user.labels} />
+      <SideBar filterEvent={filter} labels={user.labels} />
       <Tasks tasks={filteredTask} />
     </main>
   );
