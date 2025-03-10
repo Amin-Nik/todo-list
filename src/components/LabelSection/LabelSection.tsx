@@ -8,9 +8,13 @@ import EditLabelDialog from "../EditLabelDialog/EditLabelDialog";
 function LabelSection({
   labelData,
   filterByLabelEvent,
+  activeBtn,
+  setActiveBtn,
 }: {
   labelData: string[];
-  filterByLabelEvent: (label: string) => void;
+  filterByLabelEvent: (label: string) => number | undefined;
+  activeBtn: string;
+  setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
     <section>
@@ -25,12 +29,14 @@ function LabelSection({
       />
       {labelData?.map((label, index) => (
         <SideBtn
+          activeBtn={activeBtn}
+          setActiveBtn={setActiveBtn}
           clickHandler={() => filterByLabelEvent(label)}
           key={index}
           icon={<TagIcon className="size-6! inline-block ml-2" />}
           text={label}
           editAndDeleteIcon={
-            <div className="transition transition-discrete absolute right-1 top-2.5 flex opacity-0 group-hover:opacity-100">
+            <div className="bg-[#2f2f31] rounded-full transition transition-discrete absolute right-1 top-2.5 flex opacity-0 group-hover:opacity-100">
               <EditLabelDialog
                 currentLabel={label}
                 labelData={labelData}
