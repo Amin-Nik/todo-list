@@ -7,6 +7,7 @@ import { useState } from "react";
 function Main({ tasks, user }: { tasks: Task[] | undefined; user: User }) {
   const [filteredTask, setFilteredTask] = useState(tasks);
   const [activeBtn, setActiveBtn] = useState("All Task");
+  const [toggleSideBar, setToggleSideBar] = useState(true);
 
   const filter = {
     filterByLabels: function (label: string) {
@@ -39,13 +40,15 @@ function Main({ tasks, user }: { tasks: Task[] | undefined; user: User }) {
   };
 
   return (
-    <main className="pl-80 ">
+    <main className={`${toggleSideBar && "sm:pl-74"} pl-24`}>
       <SideBar
         allTasksLength={tasks?.length}
         activeBtn={activeBtn}
         setActiveBtn={setActiveBtn}
         filterEvent={filter}
         labels={user.labels}
+        toggleSideBar={toggleSideBar}
+        setToggleSideBar={setToggleSideBar}
       />
       <Tasks tasks={filteredTask} />
     </main>

@@ -10,30 +10,42 @@ function LabelSection({
   filterByLabelEvent,
   activeBtn,
   setActiveBtn,
+  toggleSideBar,
 }: {
   labelData: string[];
   filterByLabelEvent: (label: string) => number | undefined;
   activeBtn: string;
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
+  toggleSideBar: boolean;
 }) {
   return (
     <section>
       <NewLabelDialog
         labelData={labelData}
         triggerChild={
-          <Button className="w-full h-12 rounded-r-full justify-start gap-8 border-y-2 border-r-2 border-dashed border-white my-1">
-            <TagIcon className="size-6! inline-block ml-2" />
-            Add New Label
+          <Button
+            className={`${
+              toggleSideBar
+                ? "w-full! rounded-r-full pl-6! border-y-2 border-r-2"
+                : "rounded-full"
+            } transition-all transition-discrete duration-200 h-12 w-12 justify-start gap-4 border-2 border-dashed border-white my-1`}
+          >
+            <TagIcon className="size-6! inline-block" />
+
+            {toggleSideBar && (
+              <span className="w-3/5 truncate">Add New Label</span>
+            )}
           </Button>
         }
       />
       {labelData?.map((label, index) => (
         <SideBtn
+          toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
           clickHandler={() => filterByLabelEvent(label)}
           key={index}
-          icon={<TagIcon className="size-6! inline-block ml-2" />}
+          icon={<TagIcon className="size-6! inline-block" />}
           text={label}
           editAndDeleteIcon={
             <div className="bg-[#2f2f31] rounded-full transition transition-discrete absolute right-1 top-2.5 flex opacity-0 group-hover:opacity-100">
