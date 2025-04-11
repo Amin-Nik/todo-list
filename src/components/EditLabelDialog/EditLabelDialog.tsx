@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import { editLabel } from "./action";
 
@@ -30,13 +30,21 @@ function EditLabelDialog({
   const [newLabel, setNewLabel] = useState(currentLabel);
   const [btnLoadingState, setBtnLoadingState] = useState(false);
 
+  useEffect(() => {
+    setNewLabel(currentLabel);
+  }, [open]);
+
   const handleClick = async () => {
     try {
       setBtnLoadingState(true);
-      await editLabel(labelData, newLabel, currentLabel);
-      setOpen(false);
-      setNewLabel(newLabel);
+      const newLabelResponse = await editLabel(
+        labelData,
+        newLabel,
+        currentLabel
+      );
+      setNewLabel(newLabelResponse);
       setBtnLoadingState(false);
+      setOpen(false);
     } catch (error) {
       alert(error);
       setBtnLoadingState(false);

@@ -10,9 +10,10 @@ export async function editLabel(
 ) {
   if (labelData.includes(newLabel))
     throw new Error("this label is already exist!");
+  if (!newLabel.trim()) throw new Error("label can't be empty");
 
   const index = labelData.indexOf(currentLabel);
-  labelData.splice(index, 1, newLabel);
+  labelData.splice(index, 1, newLabel.trim());
 
   const label = await prisma.user.update({
     where: {
@@ -21,8 +22,11 @@ export async function editLabel(
     data: {
       labels: labelData,
     },
+    select: {
+      labels: true,
+    },
   });
 
   revalidateTag("label");
-  return label;
+  return label.labels[index];
 }

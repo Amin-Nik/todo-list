@@ -15,17 +15,16 @@ function SideBar({
   filterEvent,
   activeBtn,
   setActiveBtn,
-  allTasksLength,
   toggleSideBar,
   setToggleSideBar,
 }: {
   labels: string[];
   filterEvent: {
-    filterByLabels: (label: string) => number | undefined;
-    setAllTasks: () => number | undefined;
-    todaysTask: () => number | undefined;
-    importantTasks: () => number | undefined;
-    completeTasks: () => number | undefined;
+    filterByLabels: (label: string) => number;
+    setAllTasks: () => number;
+    todaysTask: () => number;
+    importantTasks: () => number;
+    completeTasks: () => number;
   };
   activeBtn: string;
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
@@ -39,9 +38,9 @@ function SideBar({
     <>
       <Button
         onClick={() => setToggleSideBar(!toggleSideBar)}
-        className="size-11 fixed left-4 top-2 hover:bg-gray-200 rounded-full bg-transparent transition transition-discrete"
+        className="size-11 fixed left-4 top-2 hover:bg-gray-400 rounded-full bg-transparent transition transition-discrete"
       >
-        <Bars3Icon className="size-6 text-black" />
+        <Bars3Icon className="size-6" />
       </Button>
 
       <section
@@ -51,7 +50,6 @@ function SideBar({
       >
         <SideBtn
           toggleSideBar={toggleSideBar}
-          allTasksLength={allTasksLength}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
           clickHandler={filterEvent.setAllTasks}

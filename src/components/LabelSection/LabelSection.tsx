@@ -27,8 +27,8 @@ function LabelSection({
             className={`${
               toggleSideBar
                 ? "w-full! rounded-r-full pl-6! border-y-2 border-r-2"
-                : "rounded-full"
-            } transition-all transition-discrete duration-200 h-12 w-12 justify-start gap-4 border-2 border-dashed border-white my-1`}
+                : "rounded-full border-2"
+            } transition-all transition-discrete duration-300 h-12 w-12 justify-start gap-4 border-dashed border-white my-1`}
           >
             <TagIcon className="size-6! inline-block" />
 

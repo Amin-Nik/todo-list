@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { addNewLabel } from "./action";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
 
 function NewLabelDialog({
@@ -24,15 +24,20 @@ function NewLabelDialog({
   triggerChild: React.ReactNode;
   labelData: string[];
 }) {
+  const [open, setOpen] = useState(false);
   const [newLabel, setNewLabel] = useState("");
   const [btnLoadingState, setBtnLoadingState] = useState(false);
+
+  useEffect(() => {
+    setNewLabel("");
+  }, [open]);
 
   const handleClick = async () => {
     try {
       setBtnLoadingState(true);
       await addNewLabel(labelData, newLabel);
-      setNewLabel("");
       setBtnLoadingState(false);
+      setOpen(false);
     } catch (error) {
       alert(error);
       setNewLabel("");
@@ -41,8 +46,10 @@ function NewLabelDialog({
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>{triggerChild}</DialogTrigger>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger className="hover:bg-gray-700/50" asChild>
+        {triggerChild}
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add New Label</DialogTitle>

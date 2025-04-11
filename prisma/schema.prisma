@@ -9,7 +9,7 @@ datasource db {
 
 model Task {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  date        DateTime
+  date        DateTime?
   description String
   isComplete  Boolean
   isImportant Boolean

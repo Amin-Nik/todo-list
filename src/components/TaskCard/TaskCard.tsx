@@ -1,79 +1,80 @@
 import {
   Card,
-  CardContent,
-  CardDescription,
+  CardTitle,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardContent,
+  CardDescription,
 } from "@/components/ui/card";
-import {
-  StarIcon as StarIconOutline,
-  TagIcon,
-} from "@heroicons/react/24/outline";
-
-import DatePicker from "../DatePicker/DatePicker";
-import { StarIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Task } from "@prisma/client";
+import DatePicker from "../DatePicker/DatePicker";
+import { StarIcon } from "@heroicons/react/24/solid";
+import TaskExpandDialog from "../TaskExpandDialog/TaskExpandDialog";
+import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 
-function TaskCard({ data }: { data: Task | undefined }) {
-  const iconClassName = "size-6! inline-block";
-  const BtnClassName = "rounded-full p-1.5 hover:bg-gray-200";
-
+function TaskCard({
+  data,
+  labels,
+}: {
+  data: Task | undefined;
+  labels: string[];
+}) {
   return (
-    <div>
-      <div
-        onClick={() => console.log("ttttteeeeesssssttttt")}
-        className="fixed rounded-xl size-56 min-w"
-      ></div>
-      <Card className="size-56 min-w-56 gap-3 py-2 border-gray-400">
-        <CardHeader className="mt-0.5 gap-2">
-          <CardTitle className="h-5 truncate">{data?.title}</CardTitle>
-          <CardDescription className="h-10 line-clamp-2">
-            {data?.description}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <DatePicker taskDate={data?.date} />
-          {/* Label Section */}
-          <div className="h-7 mt-3.5 flex gap-1 items-center overflow-hidden">
-            {data?.labels && data?.labels?.length > 1 ? (
-              <>
-                <LittleLabel className="truncate">
-                  {data?.labels[0]}
-                </LittleLabel>
-                <LittleLabel className="rounded-none text-clip h-5! p-1! flex justify-center items-center">{`+${
-                  data.labels.length - 1
-                }`}</LittleLabel>
-              </>
-            ) : (
-              data?.labels &&
-              data?.labels?.length > 0 && (
-                <LittleLabel className="truncate">
-                  {data?.labels[0]}
-                </LittleLabel>
-              )
-            )}
-          </div>
-        </CardContent>
-        <CardFooter className=" justify-end">
-          {data?.isImportant ? (
-            <button className={BtnClassName}>
-              <StarIcon className={`${iconClassName} text-yellow-500`} />
-            </button>
-          ) : (
-            <button className={BtnClassName}>
-              <StarIconOutline className={iconClassName} />
-            </button>
-          )}
-          <button className={BtnClassName}>
-            <TagIcon className={iconClassName} />
-          </button>
-          <button className={BtnClassName}>
-            <TrashIcon className={iconClassName} />
-          </button>
-        </CardFooter>
-      </Card>
-    </div>
+    <>
+      {data && (
+        <TaskExpandDialog
+          labels={labels}
+          LittleLabel={LittleLabel}
+          data={data}
+          triggerChild={
+            <Card className="bg-emerald-600 h-44 w-60 min-w-60 justify-evenly gap-0 py-0 border-gray-400 inset-shadow-sm">
+              <CardHeader className="mt-0.5 gap-2 px-4 bg-inherit">
+                <CardTitle className="h-5 truncate">{data.title}</CardTitle>
+                <CardDescription className="max-h-10 line-clamp-2 text-gray-900">
+                  {data.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="shadow-[inset_0_10px_8px_-10px_rgba(0,0,0,0.6),inset_0_-10px_8px_-10px_rgba(0,0,0,0.6)] h-7 flex gap-2 items-center overflow-hidden py-5 pl-3 bg-inherit">
+                {/* Label Section */}
+                {data.labels && data.labels.length > 1 ? (
+                  <>
+                    <LittleLabel className="truncate">
+                      {data.labels[0]}
+                    </LittleLabel>
+                    <LittleLabel className="rounded-none text-clip h-5! p-1! flex justify-center items-center">{`+${
+                      data.labels.length - 1
+                    }`}</LittleLabel>
+                  </>
+                ) : (
+                  data.labels &&
+                  data.labels.length > 0 && (
+                    <LittleLabel className="truncate">
+                      {data.labels[0]}
+                    </LittleLabel>
+                  )
+                )}
+                {/* End Of Label Section */}
+              </CardContent>
+              <CardFooter className="justify-around px-4 bg-inherit">
+                <DatePicker
+                  isDisabled={true}
+                  taskDate={data.date == null ? undefined : data.date}
+                />
+                {data.isImportant ? (
+                  <button>
+                    <StarIcon className="size-6! inline-block text-yellow-500" />
+                  </button>
+                ) : (
+                  <button>
+                    <StarIconOutline className="size-6! inline-block" />
+                  </button>
+                )}
+              </CardFooter>
+            </Card>
+          }
+        />
+      )}
+    </>
   );
 }
 
@@ -88,7 +89,7 @@ function LittleLabel({
 }) {
   return (
     <div
-      className={`h-6 border border-black rounded-full px-2 py-1 text-xs font-semibold ${className}`}
+      className={`border border-black rounded-full px-2 py-1 text-xs font-semibold ${className}`}
     >
       {children}
     </div>
