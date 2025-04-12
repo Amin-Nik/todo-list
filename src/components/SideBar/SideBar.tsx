@@ -17,20 +17,22 @@ function SideBar({
   setActiveBtn,
   toggleSideBar,
   setToggleSideBar,
+  taskCount,
 }: {
   labels: string[];
   filterEvent: {
-    filterByLabels: (label: string) => number;
-    setAllTasks: () => number;
-    todaysTask: () => number;
-    importantTasks: () => number;
-    completeTasks: () => number;
+    filterByLabels: (label: string) => void;
+    setAllTasks: () => void;
+    todaysTask: () => void;
+    importantTasks: () => void;
+    completeTasks: () => void;
   };
   activeBtn: string;
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
   allTasksLength: number | undefined;
   toggleSideBar: boolean;
   setToggleSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+  taskCount: number;
 }) {
   const iconClassName = "size-6! inline-block";
 
@@ -49,38 +51,43 @@ function SideBar({
         }`}
       >
         <SideBtn
+          taskCount={taskCount}
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
           clickHandler={filterEvent.setAllTasks}
           icon={<RectangleStackIcon className={iconClassName} />}
-          text="All Task"
+          text=" All Task "
         />
         <SideBtn
+          taskCount={taskCount}
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
           clickHandler={filterEvent.todaysTask}
           icon={<ClockIcon className={iconClassName} />}
-          text="Today's Task"
+          text=" Today's Task "
         />
         <SideBtn
+          taskCount={taskCount}
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
           clickHandler={filterEvent.importantTasks}
           icon={<StarIcon className={iconClassName} />}
-          text="Important Task"
+          text=" Important Task "
         />
         <SideBtn
+          taskCount={taskCount}
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
           clickHandler={filterEvent.completeTasks}
           icon={<DocumentCheckIcon className={iconClassName} />}
-          text="Completed Task"
+          text=" Completed Task "
         />
         <LabelSection
+          taskCount={taskCount}
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
@@ -93,4 +100,3 @@ function SideBar({
 }
 
 export default SideBar;
-// (label: string) => void;

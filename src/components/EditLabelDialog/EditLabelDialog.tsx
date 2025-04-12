@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import { editLabel } from "./action";
 
@@ -29,10 +29,18 @@ function EditLabelDialog({
   const [open, setOpen] = useState(false);
   const [newLabel, setNewLabel] = useState(currentLabel);
   const [btnLoadingState, setBtnLoadingState] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setNewLabel(currentLabel);
   }, [open]);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      buttonRef.current?.click();
+    }
+  };
 
   const handleClick = async () => {
     try {
@@ -65,6 +73,7 @@ function EditLabelDialog({
               Name
             </Label>
             <Input
+              onKeyDown={handleKeyDown}
               onChange={(e) => setNewLabel(e.target.value)}
               value={newLabel}
               id="name"
@@ -85,7 +94,9 @@ function EditLabelDialog({
               please wait...
             </Button>
           ) : (
-            <Button onClick={handleClick}>Save</Button>
+            <Button ref={buttonRef} onClick={handleClick}>
+              Save
+            </Button>
           )}
         </DialogFooter>
       </DialogContent>

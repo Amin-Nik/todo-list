@@ -6,27 +6,48 @@ import { useEffect, useState } from "react";
 
 function Main({ tasks, user }: { tasks: Task[] | undefined; user: User }) {
   const [filteredTask, setFilteredTask] = useState<Task[]>();
-  const [activeBtn, setActiveBtn] = useState("All Task");
+  const [activeBtn, setActiveBtn] = useState(" All Task ");
   const [toggleSideBar, setToggleSideBar] = useState(true);
+  const [taskCount, setTaskCount] = useState(0);
 
   useEffect(() => {
-    filter.setAllTasks();
+    filterTaskForStart();
     if (window.innerWidth <= 640) {
       setToggleSideBar(false);
     }
   }, [tasks]);
 
+  const filterTaskForStart = () => {
+    switch (activeBtn) {
+      case " All Task ":
+        filter.setAllTasks();
+        break;
+      case " Today's Task ":
+        filter.todaysTask();
+        break;
+      case " Important Task ":
+        filter.importantTasks();
+        break;
+      case " Completed Task ":
+        filter.completeTasks();
+        break;
+      default:
+        filter.filterByLabels(activeBtn);
+        break;
+    }
+  };
+
   const filter = {
     filterByLabels: function (label: string) {
       const filteredTask = tasks?.filter((tsk) => tsk.labels.includes(label));
       setFilteredTask(filteredTask);
-      return filteredTask?.length || 0;
+      setTaskCount(filteredTask?.length || 0);
     },
 
     setAllTasks: function () {
       const filteredTask = tasks?.filter((tsk) => !tsk.isComplete);
       setFilteredTask(filteredTask);
-      return filteredTask?.length || 0;
+      setTaskCount(filteredTask?.length || 0);
     },
 
     todaysTask: function () {
@@ -38,25 +59,26 @@ function Main({ tasks, user }: { tasks: Task[] | undefined; user: User }) {
         }
       });
       setFilteredTask(filteredTask);
-      return filteredTask?.length || 0;
+      setTaskCount(filteredTask?.length || 0);
     },
 
     importantTasks: function () {
       const filteredTask = tasks?.filter((tsk) => tsk.isImportant);
       setFilteredTask(filteredTask);
-      return filteredTask?.length || 0;
+      setTaskCount(filteredTask?.length || 0);
     },
 
     completeTasks: function () {
       const filteredTask = tasks?.filter((tsk) => tsk.isComplete);
       setFilteredTask(filteredTask);
-      return filteredTask?.length || 0;
+      setTaskCount(filteredTask?.length || 0);
     },
   };
 
   return (
     <main className={`${toggleSideBar && "sm:pl-74"} pl-20`}>
       <SideBar
+        taskCount={taskCount}
         allTasksLength={0}
         activeBtn={activeBtn}
         setActiveBtn={setActiveBtn}

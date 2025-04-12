@@ -34,7 +34,7 @@ function TaskCard({
                   {data.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="shadow-[inset_0_10px_8px_-10px_rgba(0,0,0,0.6),inset_0_-10px_8px_-10px_rgba(0,0,0,0.6)] h-7 flex gap-2 items-center overflow-hidden py-5 pl-3 bg-inherit">
+              <CardContent className="shadow-[inset_0_10px_8px_-10px_rgba(0,0,0,0.6),inset_0_-10px_8px_-10px_rgba(0,0,0,0.6)] h-7 flex gap-2 items-center overflow-hidden py-5 px-3 bg-inherit">
                 {/* Label Section */}
                 {data.labels && data.labels.length > 1 ? (
                   <>

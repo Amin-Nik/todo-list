@@ -52,7 +52,7 @@ function LabelPopover({
                 className="text-green-500 bg-red-200 border-blue-500"
                 id={"label" + index}
               />
-              {label}
+              <span className="truncate">{label}</span>
             </Label>
           </div>
         ))}

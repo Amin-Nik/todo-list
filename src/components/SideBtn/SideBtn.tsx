@@ -1,5 +1,3 @@
-"use client";
-import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 
@@ -11,31 +9,23 @@ function SideBtn({
   activeBtn,
   setActiveBtn,
   toggleSideBar,
+  taskCount,
 }: {
   icon: React.ReactNode;
   text: string;
-  clickHandler: () => number;
+  clickHandler: () => void;
   editAndDeleteIcon?: React.ReactNode;
   activeBtn: string;
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
   toggleSideBar: boolean;
+  taskCount: number;
 }) {
-  const [taskLength, setTaskLength] = useState(0);
-
-  useEffect(() => {
-    if (text == "All Task") {
-      const count = clickHandler();
-      setTaskLength(count);
-    }
-  }, []);
-
   return (
     <div className="relative group">
       <Button
         onClick={() => {
           setActiveBtn(text);
-          const count = clickHandler();
-          setTaskLength(count);
+          clickHandler();
         }}
         className={`hover:bg-gray-700/50 transition-all transition-discrete duration-300 h-12 w-12  justify-start gap-4 ${
           activeBtn == text && "bg-amber-700"
@@ -44,10 +34,10 @@ function SideBtn({
         {icon}
         {toggleSideBar && (
           <>
-            <span className="w-3/5 truncate">{text}</span>
+            <span className="w-3/5 truncate">{text.trim()}</span>
             {activeBtn == text && (
               <Label className="flex justify-center items-center rounded-full p-1.5 bg-red-950">
-                {taskLength}
+                {taskCount}
               </Label>
             )}
           </>

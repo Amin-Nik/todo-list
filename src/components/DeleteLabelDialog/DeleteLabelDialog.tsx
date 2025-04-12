@@ -19,10 +19,12 @@ function DeleteLabelDialog({
   triggerChild,
   labelData,
   currentLabel,
+  setActiveBtn,
 }: {
   triggerChild: React.ReactNode;
   labelData: string[];
   currentLabel: string;
+  setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [btnLoadingState, setBtnLoadingState] = useState(false);
   const [open, setOpen] = useState(false);
@@ -33,6 +35,7 @@ function DeleteLabelDialog({
       await deleteLabel(labelData, currentLabel);
       setOpen(false);
       setBtnLoadingState(false);
+      setActiveBtn(" All Task ");
     } catch (error) {
       alert(error);
       setBtnLoadingState(false);

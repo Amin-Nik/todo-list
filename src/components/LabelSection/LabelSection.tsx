@@ -11,12 +11,14 @@ function LabelSection({
   activeBtn,
   setActiveBtn,
   toggleSideBar,
+  taskCount,
 }: {
   labelData: string[];
-  filterByLabelEvent: (label: string) => number | undefined;
+  filterByLabelEvent: (label: string) => void;
   activeBtn: string;
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
   toggleSideBar: boolean;
+  taskCount: number;
 }) {
   return (
     <section>
@@ -40,6 +42,7 @@ function LabelSection({
       />
       {labelData?.map((label, index) => (
         <SideBtn
+          taskCount={taskCount}
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
@@ -59,6 +62,7 @@ function LabelSection({
                 }
               />
               <DeleteLabelDialog
+                setActiveBtn={setActiveBtn}
                 currentLabel={label}
                 labelData={labelData}
                 triggerChild={
