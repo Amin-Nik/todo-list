@@ -33,6 +33,6 @@ export async function deleteLabel(labelData: string[], currentLabel: string) {
     },
   });
 
-  revalidateTag("label");
+  revalidateTag("");
   return deletedLabel;
 }

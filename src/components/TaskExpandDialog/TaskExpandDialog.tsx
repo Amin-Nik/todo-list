@@ -28,6 +28,7 @@ import DatePicker from "../DatePicker/DatePicker";
 import { Textarea } from "../ui/textarea";
 import LabelPopover from "../LabelPopover/LabelPopover";
 import { editTask } from "./action";
+import DeleteTaskDialog from "../DeleteTaskDialog/DeleteTaskDialog";
 
 function TaskExpandDialog({
   triggerChild,
@@ -133,9 +134,14 @@ function TaskExpandDialog({
                 </button>
               }
             />
-            <button className={BtnClassName}>
-              <TrashIcon className={iconClassName} />
-            </button>
+            <DeleteTaskDialog
+              triggerChild={
+                <button className={BtnClassName}>
+                  <TrashIcon className={iconClassName} />
+                </button>
+              }
+              taskId={taskData.id}
+            />
           </div>
         </div>
 

@@ -14,7 +14,7 @@ export async function editTask(data: Task, oldData: Task) {
       data: theData,
     });
 
-    revalidateTag("task");
+    revalidateTag("");
     return task;
   }
 }

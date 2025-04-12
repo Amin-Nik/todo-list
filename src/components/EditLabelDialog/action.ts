@@ -48,7 +48,7 @@ export async function editLabel(
       },
     });
 
-    revalidateTag("label");
+    revalidateTag("");
     return label.labels[index];
   } else return currentLabel;
 }

@@ -17,6 +17,6 @@ export async function addNewLabel(labelData: string[], newLabel: string) {
     },
   });
 
-  revalidateTag("label");
+  revalidateTag("");
   return label;
 }
