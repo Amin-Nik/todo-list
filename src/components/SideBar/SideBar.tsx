@@ -12,7 +12,6 @@ import { Button } from "../ui/button";
 
 function SideBar({
   labels,
-  filterEvent,
   activeBtn,
   setActiveBtn,
   toggleSideBar,
@@ -20,16 +19,8 @@ function SideBar({
   taskCount,
 }: {
   labels: string[];
-  filterEvent: {
-    filterByLabels: (label: string) => void;
-    setAllTasks: () => void;
-    todaysTask: () => void;
-    importantTasks: () => void;
-    completeTasks: () => void;
-  };
   activeBtn: string;
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
-  allTasksLength: number | undefined;
   toggleSideBar: boolean;
   setToggleSideBar: React.Dispatch<React.SetStateAction<boolean>>;
   taskCount: number;
@@ -46,7 +37,7 @@ function SideBar({
       </Button>
 
       <section
-        className={`transition-all transition-discrete duration-200 fixed left-0 h-[91vh] py-2 overflow-auto bg-primary ${
+        className={`z-10 transition-all transition-discrete duration-200 fixed left-0 h-[91vh] py-2 overflow-auto bg-primary ${
           toggleSideBar ? "w-70" : "w-20 pl-3.5"
         }`}
       >
@@ -55,7 +46,6 @@ function SideBar({
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
-          clickHandler={filterEvent.setAllTasks}
           icon={<RectangleStackIcon className={iconClassName} />}
           text=" All Task "
         />
@@ -64,7 +54,6 @@ function SideBar({
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
-          clickHandler={filterEvent.todaysTask}
           icon={<ClockIcon className={iconClassName} />}
           text=" Today's Task "
         />
@@ -73,7 +62,6 @@ function SideBar({
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
-          clickHandler={filterEvent.importantTasks}
           icon={<StarIcon className={iconClassName} />}
           text=" Important Task "
         />
@@ -82,7 +70,6 @@ function SideBar({
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
-          clickHandler={filterEvent.completeTasks}
           icon={<DocumentCheckIcon className={iconClassName} />}
           text=" Completed Task "
         />
@@ -91,7 +78,6 @@ function SideBar({
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
-          filterByLabelEvent={filterEvent.filterByLabels}
           labelData={labels}
         />
       </section>

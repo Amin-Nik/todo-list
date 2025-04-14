@@ -7,14 +7,12 @@ import EditLabelDialog from "../EditLabelDialog/EditLabelDialog";
 
 function LabelSection({
   labelData,
-  filterByLabelEvent,
   activeBtn,
   setActiveBtn,
   toggleSideBar,
   taskCount,
 }: {
   labelData: string[];
-  filterByLabelEvent: (label: string) => void;
   activeBtn: string;
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
   toggleSideBar: boolean;
@@ -46,7 +44,6 @@ function LabelSection({
           toggleSideBar={toggleSideBar}
           activeBtn={activeBtn}
           setActiveBtn={setActiveBtn}
-          clickHandler={() => filterByLabelEvent(label)}
           key={index}
           icon={<TagIcon className="size-6! inline-block" />}
           text={label}

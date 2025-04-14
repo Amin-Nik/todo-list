@@ -24,10 +24,9 @@ function TaskCard({
       {data && (
         <TaskExpandDialog
           labels={labels}
-          LittleLabel={LittleLabel}
           data={data}
           triggerChild={
-            <Card className="bg-emerald-600 h-44 w-60 min-w-60 justify-evenly gap-0 py-0 border-gray-400 inset-shadow-sm">
+            <Card className="cursor-pointer bg-emerald-600 h-44 w-60 min-w-60 justify-evenly gap-0 py-0 border-gray-400 inset-shadow-sm">
               <CardHeader className="mt-0.5 gap-2 px-4 bg-inherit">
                 <CardTitle className="h-5 truncate">{data.title}</CardTitle>
                 <CardDescription className="max-h-10 line-clamp-2 text-gray-900">

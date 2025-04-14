@@ -4,7 +4,6 @@ import { Label } from "../ui/label";
 function SideBtn({
   icon,
   text,
-  clickHandler,
   editAndDeleteIcon,
   activeBtn,
   setActiveBtn,
@@ -13,7 +12,6 @@ function SideBtn({
 }: {
   icon: React.ReactNode;
   text: string;
-  clickHandler: () => void;
   editAndDeleteIcon?: React.ReactNode;
   activeBtn: string;
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
@@ -25,7 +23,6 @@ function SideBtn({
       <Button
         onClick={() => {
           setActiveBtn(text);
-          clickHandler();
         }}
         className={`hover:bg-gray-700/50 transition-all transition-discrete duration-300 h-12 w-12  justify-start gap-4 ${
           activeBtn == text && "bg-amber-700"

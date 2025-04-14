@@ -18,3 +18,14 @@ export async function editTask(data: Task, oldData: Task) {
     return task;
   }
 }
+
+export async function addTask(data: Task) {
+  if (!data.title.trim()) throw new Error("task's title can't be empty");
+  const { id, ...theData } = data;
+  const newTask = await prisma.task.create({
+    data: { ...theData, userId: "67c9dcc075cddd2f8bc99e69" },
+  });
+
+  revalidateTag("");
+  return newTask;
+}

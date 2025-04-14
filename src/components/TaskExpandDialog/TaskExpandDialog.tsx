@@ -27,35 +27,29 @@ import { Task } from "@prisma/client";
 import DatePicker from "../DatePicker/DatePicker";
 import { Textarea } from "../ui/textarea";
 import LabelPopover from "../LabelPopover/LabelPopover";
-import { editTask } from "./action";
+import { editTask, addTask } from "./action";
 import DeleteTaskDialog from "../DeleteTaskDialog/DeleteTaskDialog";
 
 function TaskExpandDialog({
+  newTask = false,
   triggerChild,
   data,
-  LittleLabel,
   labels,
 }: {
+  newTask?: boolean;
   triggerChild: React.ReactNode;
   data: Task;
-  LittleLabel: ({
-    children,
-    className,
-  }: {
-    children: string;
-    className?: string | undefined;
-  }) => React.JSX.Element;
   labels: string[];
 }) {
   const [open, setOpen] = useState(false);
-  const [taskData, setTaskData] = useState(data);
+  const [taskData, setTaskData] = useState<Task>(data);
   const [btnLoadingState, setBtnLoadingState] = useState(false);
 
   useEffect(() => {
     setTaskData(data);
   }, [open]);
 
-  const handleClick = async () => {
+  const handleClickEdit = async () => {
     try {
       setBtnLoadingState(true);
       await editTask(taskData, data);
@@ -66,6 +60,18 @@ function TaskExpandDialog({
       setBtnLoadingState(false);
     }
   };
+  const handleClickAdd = async () => {
+    try {
+      setBtnLoadingState(true);
+      await addTask(taskData);
+      setBtnLoadingState(false);
+      setOpen(false);
+    } catch (error) {
+      alert(error);
+      setBtnLoadingState(false);
+    }
+  };
+
   const iconClassName = "size-6! inline-block";
   const BtnClassName = "rounded-full p-1.5 hover:bg-gray-200";
 
@@ -97,9 +103,12 @@ function TaskExpandDialog({
         {/* Label Section */}
         <div className="max-h-36 flex py-2 flex-wrap overflow-auto gap-1 items-center">
           {taskData.labels.map((label, index) => (
-            <LittleLabel className="line-clamp-3" key={index}>
+            <div
+              key={index}
+              className="border border-black rounded-full px-2 py-1 text-xs font-semibold line-clamp-3}"
+            >
               {label}
-            </LittleLabel>
+            </div>
           ))}
         </div>
         {/* Bottom Section */}
@@ -134,14 +143,16 @@ function TaskExpandDialog({
                 </button>
               }
             />
-            <DeleteTaskDialog
-              triggerChild={
-                <button className={BtnClassName}>
-                  <TrashIcon className={iconClassName} />
-                </button>
-              }
-              taskId={taskData.id}
-            />
+            {newTask || (
+              <DeleteTaskDialog
+                triggerChild={
+                  <button className={BtnClassName}>
+                    <TrashIcon className={iconClassName} />
+                  </button>
+                }
+                taskId={taskData.id}
+              />
+            )}
           </div>
         </div>
 
@@ -175,7 +186,9 @@ function TaskExpandDialog({
               please wait...
             </Button>
           ) : (
-            <Button onClick={handleClick}>Save</Button>
+            <Button onClick={newTask ? handleClickAdd : handleClickEdit}>
+              Save
+            </Button>
           )}
         </DialogFooter>
       </DialogContent>
