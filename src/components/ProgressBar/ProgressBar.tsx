@@ -27,7 +27,7 @@ function ProgressBar({
 
   return (
     <section className={`w-80 ${className}`}>
-      <div className="flex justify-between mb-0.5 px-2 text-white text-xs">
+      <div className="flex justify-between mb-0.5 px-2 text-xs">
         <span>Task Completeness</span>
         <span>{`${tasksLengths[1]}/${tasksLengths[0]}`}</span>
       </div>
@@ -36,7 +36,7 @@ function ProgressBar({
           style={{ width: `${progress}%` }}
           className={`h-5 ${
             progress == 100 ? "rounded-full" : "rounded-r-full"
-          } bg-gray-700 transition-all duration-700`}
+          } bg-gray-600 transition-all duration-700`}
         ></div>
       </div>
     </section>

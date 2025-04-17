@@ -34,7 +34,7 @@ function SearchBar({
         onChange={(e) => setSearchParameter(e.target.value.trim())}
         type="search"
         placeholder="Search..."
-        className="text-white pl-10 h-10"
+        className="pl-10 h-10"
       />
     </section>
   );

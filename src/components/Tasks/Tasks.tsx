@@ -1,16 +1,18 @@
 import { Task } from "@prisma/client";
-import TaskCard from "../TaskCard/TaskCard";
 import { Card } from "../ui/card";
+import TaskCard from "../TaskCard/TaskCard";
 import TaskExpandDialog from "../TaskExpandDialog/TaskExpandDialog";
 
 function Tasks({
   tasks,
   labels,
+  activeBtn,
 }: {
   tasks: Task[] | undefined;
   labels: string[];
+  activeBtn: string;
 }) {
-  const initialTask = {
+  const initialTask: Task = {
     id: "",
     date: null,
     description: "",
@@ -21,6 +23,27 @@ function Tasks({
     userId: "",
   };
 
+  (() => {
+    switch (activeBtn) {
+      case "Search":
+        break;
+      case " All Task ":
+        break;
+      case " Today's Task ":
+        initialTask.date = new Date();
+        break;
+      case " Important Task ":
+        initialTask.isImportant = true;
+        break;
+      case " Completed Task ":
+        initialTask.isComplete = true;
+        break;
+      default:
+        initialTask.labels.push(activeBtn);
+        break;
+    }
+  })();
+
   return (
     <section className="py-4 px-2 flex flex-wrap gap-5 justify-center md:justify-start">
       <TaskExpandDialog
@@ -28,7 +51,7 @@ function Tasks({
         data={initialTask}
         labels={labels}
         triggerChild={
-          <Card className="cursor-pointer h-44 w-60 min-w-60 flex justify-center items-center border-dashed border-2 border-gray-400 text-gray-500">
+          <Card className="bg-background text-foreground cursor-pointer h-44 w-60 min-w-60 flex justify-center items-center border-dashed border-2 border-gray-400 ">
             Create New Task
           </Card>
         }

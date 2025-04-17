@@ -26,14 +26,14 @@ function TaskCard({
           labels={labels}
           data={data}
           triggerChild={
-            <Card className="cursor-pointer bg-emerald-600 h-44 w-60 min-w-60 justify-evenly gap-0 py-0 border-gray-400 inset-shadow-sm">
+            <Card className="cursor-pointer bg-card text-card-foreground h-44 w-60 min-w-60 justify-evenly gap-0 py-0 border-gray-500 inset-shadow-sm">
               <CardHeader className="mt-0.5 gap-2 px-4 bg-inherit">
                 <CardTitle className="h-5 truncate">{data.title}</CardTitle>
-                <CardDescription className="max-h-10 line-clamp-2 text-gray-900">
+                <CardDescription className="max-h-10 line-clamp-2">
                   {data.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="shadow-[inset_0_10px_8px_-10px_rgba(0,0,0,0.6),inset_0_-10px_8px_-10px_rgba(0,0,0,0.6)] h-7 flex gap-2 items-center overflow-hidden py-5 px-3 bg-inherit">
+              <CardContent className="shadow-[inset_0_10px_10px_-12px_rgba(0,0,0,0.6),inset_0_-10px_10px_-12px_rgba(0,0,0,0.6)] h-7 flex gap-2 items-center overflow-hidden py-5 px-3 bg-inherit">
                 {/* Label Section */}
                 {data.labels && data.labels.length > 1 ? (
                   <>
@@ -60,11 +60,11 @@ function TaskCard({
                   taskDate={data.date == null ? undefined : data.date}
                 />
                 {data.isImportant ? (
-                  <button>
+                  <button className="cursor-pointer">
                     <StarIcon className="size-6! inline-block text-yellow-500" />
                   </button>
                 ) : (
-                  <button>
+                  <button className="cursor-pointer">
                     <StarIconOutline className="size-6! inline-block" />
                   </button>
                 )}
@@ -88,7 +88,7 @@ function LittleLabel({
 }) {
   return (
     <div
-      className={`border border-black rounded-full px-2 py-1 text-xs font-semibold ${className}`}
+      className={`border border-foreground rounded-full px-2 py-1 text-xs font-semibold ${className}`}
     >
       {children}
     </div>

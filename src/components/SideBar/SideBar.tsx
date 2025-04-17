@@ -31,14 +31,14 @@ function SideBar({
     <>
       <Button
         onClick={() => setToggleSideBar(!toggleSideBar)}
-        className="size-11 fixed left-4 top-2 hover:bg-gray-400 rounded-full bg-transparent transition transition-discrete"
+        className="size-11 fixed left-4 top-2 text-header-foreground-foreground hover:bg-gray-500/50 rounded-full bg-transparent transition transition-discrete"
       >
         <Bars3Icon className="size-6" />
       </Button>
 
       <section
-        className={`z-10 transition-all transition-discrete duration-200 fixed left-0 h-[91vh] py-2 overflow-auto bg-primary ${
-          toggleSideBar ? "w-70" : "w-20 pl-3.5"
+        className={`z-10 transition-all transition-discrete duration-200 fixed left-0 top-14 h-dvh py-2 overflow-auto bg-sidebar text-sidebar-foreground ${
+          toggleSideBar ? "w-70 pr-2" : "w-20 pl-3.5"
         }`}
       >
         <SideBtn

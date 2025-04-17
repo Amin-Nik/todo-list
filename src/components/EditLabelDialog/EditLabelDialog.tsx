@@ -21,10 +21,12 @@ function EditLabelDialog({
   triggerChild,
   labelData,
   currentLabel,
+  setActiveBtn,
 }: {
   triggerChild: React.ReactNode;
   labelData: string[];
   currentLabel: string;
+  setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [open, setOpen] = useState(false);
   const [newLabel, setNewLabel] = useState(currentLabel);
@@ -53,6 +55,7 @@ function EditLabelDialog({
       setNewLabel(newLabelResponse);
       setBtnLoadingState(false);
       setOpen(false);
+      setActiveBtn((e) => (e == currentLabel ? newLabel : e));
     } catch (error) {
       alert(error);
       setBtnLoadingState(false);

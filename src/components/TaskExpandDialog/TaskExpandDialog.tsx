@@ -73,15 +73,16 @@ function TaskExpandDialog({
   };
 
   const iconClassName = "size-6! inline-block";
-  const BtnClassName = "rounded-full p-1.5 hover:bg-gray-200";
+  const BtnClassName = "cursor-pointer rounded-full p-1.5 hover:bg-card/50";
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{triggerChild}</DialogTrigger>
-      <DialogContent className="md:min-w-3xl">
+      <DialogContent className="md:min-w-3xl bg-popover text-popover-foreground">
         <DialogHeader className="mt-4 gap-2">
           <DialogTitle>
             <Input
+              className="text-foreground"
               placeholder="Title"
               onChange={(e) =>
                 setTaskData({ ...taskData, title: e.target.value })
@@ -89,9 +90,9 @@ function TaskExpandDialog({
               value={taskData.title}
             />
           </DialogTitle>
-          <DialogDescription className="line-clamp-2 text-gray-900">
+          <DialogDescription className="line-clamp-2">
             <Textarea
-              className="resize-none max-h-36 border-gray-400"
+              className="resize-none max-h-36"
               placeholder="description"
               onChange={(e) =>
                 setTaskData({ ...taskData, description: e.target.value })
@@ -105,7 +106,7 @@ function TaskExpandDialog({
           {taskData.labels.map((label, index) => (
             <div
               key={index}
-              className="border border-black rounded-full px-2 py-1 text-xs font-semibold line-clamp-3}"
+              className="border border-foreground rounded-full px-2 py-1 text-xs font-semibold line-clamp-3}"
             >
               {label}
             </div>
@@ -159,7 +160,7 @@ function TaskExpandDialog({
         <DialogFooter>
           {taskData.isComplete ? (
             <Button
-              className="bg-teal-800 hover:bg-teal-800/90"
+              className="bg-isComplete hover:bg-isComplete/90 text-isComplete-foreground"
               onClick={() => setTaskData({ ...taskData, isComplete: false })}
             >
               Mark As Undone
@@ -167,7 +168,7 @@ function TaskExpandDialog({
             </Button>
           ) : (
             <Button
-              className="bg-teal-800 hover:bg-teal-800/90"
+              className="bg-isComplete hover:bg-isComplete/90 text-isComplete-foreground"
               onClick={() => setTaskData({ ...taskData, isComplete: true })}
             >
               Mark As Done

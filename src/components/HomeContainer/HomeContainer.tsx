@@ -37,17 +37,17 @@ function HomeContainer({
 
   return (
     <>
-      <header className="border-b border-solid border-b-gray-500 sticky top-0 w-full h-14 bg-primary flex items-center justify-start pl-20 py-2 gap-10">
+      <header className="bg-header text-header-foreground sticky top-0 w-full h-14 flex items-center justify-start pl-20 py-2 gap-10">
         <SearchBar
           className="hidden sm:block"
           setSearchParams={setSearchParams}
         />
         <ProgressBar className="hidden lg:block" tasks={tasks} />
         <DarkModeToggle />
-        <h1 className="text-white text-2xl">hi {user.name}!</h1>
+        <h1 className="text-2xl">hi {user.name}!</h1>
       </header>
 
-      <main className={`${toggleSideBar && "sm:pl-74"} pl-20`}>
+      <main className={`${toggleSideBar && "sm:pl-70"} pl-20`}>
         <SideBar
           taskCount={taskCount}
           activeBtn={activeBtn}
@@ -63,7 +63,11 @@ function HomeContainer({
             setSearchParams={setSearchParams}
           />
         </section>
-        <Tasks tasks={filteredTask} labels={user.labels} />
+        <Tasks
+          activeBtn={activeBtn}
+          tasks={filteredTask}
+          labels={user.labels}
+        />
       </main>
     </>
   );

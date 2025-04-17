@@ -28,7 +28,7 @@ function LabelSection({
               toggleSideBar
                 ? "w-full! rounded-r-full pl-6! border-y-2 border-r-2"
                 : "rounded-full border-2"
-            } transition-all transition-discrete duration-300 h-12 w-12 justify-start gap-4 border-dashed border-white my-1`}
+            } bg-sidebar hover:bg-sidebar-accent/50 text-sidebar-foreground transition-all transition-discrete duration-300 h-12 w-12 justify-start gap-4 border-dashed border-sidebar-foreground my-1`}
           >
             <TagIcon className="size-6! inline-block" />
 
@@ -50,6 +50,7 @@ function LabelSection({
           editAndDeleteIcon={
             <div className="bg-[#2f2f31] rounded-full transition transition-discrete absolute right-1 top-2.5 flex opacity-0 group-hover:opacity-100">
               <EditLabelDialog
+                setActiveBtn={setActiveBtn}
                 currentLabel={label}
                 labelData={labelData}
                 triggerChild={

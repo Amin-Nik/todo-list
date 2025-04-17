@@ -33,9 +33,9 @@ function DeleteLabelDialog({
     try {
       setBtnLoadingState(true);
       await deleteLabel(labelData, currentLabel);
-      setOpen(false);
       setBtnLoadingState(false);
-      setActiveBtn(" All Task ");
+      setOpen(false);
+      setActiveBtn((e) => (e == currentLabel ? " All Task " : e));
     } catch (error) {
       alert(error);
       setBtnLoadingState(false);

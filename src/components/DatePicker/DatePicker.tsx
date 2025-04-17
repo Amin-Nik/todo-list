@@ -44,9 +44,11 @@ function DatePicker({
         <Button
           variant={"outline"}
           className={cn(
-            "w-fit h-fit justify-start text-left font-normal border-black px-2! py-1",
+            "w-fit h-fit justify-start text-left font-normal border-ring px-2! py-1 cursor-pointer",
             !date && "text-muted-foreground",
-            isDisabled ? "hover:bg-white" : "hover:bg-black/10"
+            isDisabled
+              ? "bg-card hover:bg-card hover:text-card-foreground"
+              : "bg-popover"
           )}
         >
           <CalendarIcon />

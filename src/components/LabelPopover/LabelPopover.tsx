@@ -36,7 +36,7 @@ function LabelPopover({
           <div className="flex items-center gap-2" key={index}>
             <Label
               onClick={() => {}}
-              className="size-full py-2.5 px-4 hover:bg-gray-200"
+              className="size-full py-2.5 px-4 hover:bg-accent"
               htmlFor={"label" + index}
             >
               <Checkbox

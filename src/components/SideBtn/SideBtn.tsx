@@ -24,8 +24,9 @@ function SideBtn({
         onClick={() => {
           setActiveBtn(text);
         }}
-        className={`hover:bg-gray-700/50 transition-all transition-discrete duration-300 h-12 w-12  justify-start gap-4 ${
-          activeBtn == text && "bg-amber-700"
+        className={`bg-inherit hover:bg-sidebar-accent/50 text-inherit transition-all transition-discrete duration-300 h-12 w-12 justify-start gap-4 ${
+          activeBtn == text &&
+          "bg-sidebar-accent text-sidebar-accent-foreground"
         } ${toggleSideBar ? "w-full rounded-r-full! pl-6!" : "rounded-full"}`}
       >
         {icon}
@@ -33,7 +34,7 @@ function SideBtn({
           <>
             <span className="w-3/5 truncate">{text.trim()}</span>
             {activeBtn == text && (
-              <Label className="flex justify-center items-center rounded-full p-1.5 bg-red-950">
+              <Label className="flex justify-center items-center rounded-full p-1.5 bg-sidebar-foreground text-sidebar ">
                 {taskCount}
               </Label>
             )}
