@@ -31,13 +31,15 @@ function ProgressBar({
         <span>Task Completeness</span>
         <span>{`${tasksLengths[1]}/${tasksLengths[0]}`}</span>
       </div>
-      <div className=" h-5 w-full rounded-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 flex justify-end">
-        <div
-          style={{ width: `${progress}%` }}
-          className={`h-5 ${
-            progress == 100 ? "rounded-full" : "rounded-r-full"
-          } bg-gray-600 transition-all duration-700`}
-        ></div>
+      <div className="rounded-full border border-header-foreground">
+        <div className=" h-5 w-full rounded-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 flex justify-end">
+          <div
+            style={{ width: `${progress}%` }}
+            className={`h-5 ${
+              progress == 100 ? "rounded-full" : "rounded-r-full"
+            } bg-header transition-all duration-700`}
+          ></div>
+        </div>
       </div>
     </section>
   );

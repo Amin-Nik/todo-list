@@ -1,7 +1,6 @@
 "use server";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { revalidateTag } from "next/cache";
-const prisma = new PrismaClient();
 
 export async function deleteLabel(labelData: string[], currentLabel: string) {
   const tasks = await prisma.task.findMany({

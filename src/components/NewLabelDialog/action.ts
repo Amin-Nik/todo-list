@@ -1,7 +1,6 @@
 "use server";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { revalidateTag } from "next/cache";
-const prisma = new PrismaClient();
 
 export async function addNewLabel(labelData: string[], newLabel: string) {
   if (labelData.includes(newLabel))
