@@ -37,7 +37,7 @@ function HomeContainer({
 
   return (
     <>
-      <header className="bg-header text-header-foreground sticky top-0 w-full h-14 flex items-center justify-start pl-20 py-2 gap-10">
+      <header className="bg-header backdrop-blur-lg text-header-foreground sticky top-0 w-full h-14 flex items-center justify-start pl-20 py-2 gap-10">
         <SearchBar
           className="hidden sm:block"
           setSearchParams={setSearchParams}

@@ -37,7 +37,7 @@ function SideBar({
       </Button>
 
       <section
-        className={`z-10 transition-all transition-discrete duration-200 fixed left-0 top-14 h-dvh py-2 overflow-auto bg-sidebar text-sidebar-foreground ${
+        className={`z-10 backdrop-blur-lg transition-all transition-discrete duration-200 fixed left-0 top-14 h-dvh py-2 overflow-auto bg-sidebar text-sidebar-foreground ${
           toggleSideBar ? "w-70 pr-2" : "w-20 pl-3.5"
         }`}
       >
