@@ -1,7 +1,7 @@
 "use server";
-import { PrismaClient, Task } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
+import { Task } from "@prisma/client";
 import { revalidateTag } from "next/cache";
-const prisma = new PrismaClient();
 
 export async function editTask(data: Task, oldData: Task) {
   if (!data.title.trim()) throw new Error("task's title can't be empty");
@@ -21,6 +21,7 @@ export async function editTask(data: Task, oldData: Task) {
 
 export async function addTask(data: Task) {
   if (!data.title.trim()) throw new Error("task's title can't be empty");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id, ...theData } = data;
   const newTask = await prisma.task.create({
     data: { ...theData, userId: "67c9dcc075cddd2f8bc99e69" },
