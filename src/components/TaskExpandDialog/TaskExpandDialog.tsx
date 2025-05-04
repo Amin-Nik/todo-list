@@ -73,7 +73,7 @@ function TaskExpandDialog({
   };
 
   const iconClassName = "size-6! inline-block";
-  const BtnClassName = "cursor-pointer rounded-full p-1.5 hover:bg-card/50";
+  const BtnClassName = "cursor-pointer rounded-full p-1.5 hover:bg-accent";
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -124,7 +124,7 @@ function TaskExpandDialog({
                 onClick={() => setTaskData({ ...taskData, isImportant: false })}
                 className={BtnClassName}
               >
-                <StarIcon className={`${iconClassName} text-yellow-500`} />
+                <StarIcon className={`${iconClassName}`} />
               </button>
             ) : (
               <button

@@ -51,7 +51,7 @@ function Tasks({
         data={initialTask}
         labels={labels}
         triggerChild={
-          <Card className="bg-background text-foreground cursor-pointer h-44 w-60 min-w-60 flex justify-center items-center border-dashed border-2 border-gray-400 ">
+          <Card className="bg-transparent backdrop-blur-xs text-foreground cursor-pointer h-44 w-60 min-w-60 flex justify-center items-center border-dashed border-2 border-ring ">
             Create New Task
           </Card>
         }

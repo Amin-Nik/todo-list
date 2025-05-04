@@ -12,7 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="aurora">{children}</body>
+      <body className="theme1">{children}</body>
     </html>
   );
 }

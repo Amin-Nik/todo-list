@@ -28,7 +28,7 @@ function SearchBar({
   };
 
   return (
-    <section className={`relative w-full max-w-sm ${className}`}>
+    <section className={`relative flex-grow max-w-116 ${className}`}>
       <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-5" />
       <Input
         onChange={(e) => setSearchParameter(e.target.value.trim())}

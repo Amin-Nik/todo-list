@@ -8,7 +8,7 @@ function DarkModeToggle() {
     const body = document.body;
     const bodyClass = body.className;
     if (darkMode) {
-      const slicedBodyClass = bodyClass.slice(0, bodyClass.indexOf("-"));
+      const slicedBodyClass = bodyClass.slice(0, bodyClass.indexOf("-dark"));
       body.classList.remove(bodyClass);
       body.classList.add(slicedBodyClass);
     } else {
@@ -28,7 +28,7 @@ function DarkModeToggle() {
         fontSize: "15%",
         height: "16em",
         width: "30em",
-        backgroundColor: darkMode ? "#423966" : "#00E5FF",
+        backgroundColor: darkMode ? "#423966" : "#00B5FF",
       }}
     >
       {darkMode ? (
@@ -43,14 +43,14 @@ function DarkModeToggle() {
             transform: "rotate(-75deg)",
             boxShadow: `
               inset 3em 2.5em 0 0em #ffff,
-              0em -7em 0 -4.5em #7D7D7D,
-              3em 7em 0 -4.5em #7D7D7D,
-              2em 13em 0 -4em #7D7D7D,
-              6em 2em 0 -4.1em #7D7D7D,
-              8em 8em 0 -4.5em #7D7D7D,
-              6em 13em 0 -4.5em #7D7D7D,
-              -4em 7em 0 -4.5em #7D7D7D,
-              -1em 10em 0 -4.5em #7D7D7D
+              0em -7em 0 -4.5em #9D9D9d,
+              3em 7em 0 -4.5em #9D9D9d,
+              2em 13em 0 -4em #9D9D9d,
+              6em 2em 0 -4.1em #9D9D9d,
+              8em 8em 0 -4.5em #9D9D9d,
+              6em 13em 0 -4.5em #9D9D9d,
+              -4em 7em 0 -4.5em #9D9D9d,
+              -1em 10em 0 -4.5em #9D9D9d
             `,
           }}
         ></div>

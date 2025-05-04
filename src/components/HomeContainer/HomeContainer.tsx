@@ -7,6 +7,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import filterTasks from "@/utils/filterTasks";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
+import ThemeSelector from "../ThemeSelector/ThemeSelector";
 
 function HomeContainer({
   tasks,
@@ -37,17 +38,20 @@ function HomeContainer({
 
   return (
     <>
-      <header className="bg-header backdrop-blur-lg text-header-foreground sticky top-0 w-full h-14 flex items-center justify-start pl-20 py-2 gap-10">
+      <header className="bg-header sm:backdrop-blur-xs backdrop-blur-3xl text-header-foreground sticky top-0 w-full h-14 flex items-center justify-between gap-5 pl-19 py-2">
         <SearchBar
           className="hidden sm:block"
           setSearchParams={setSearchParams}
         />
         <ProgressBar className="hidden lg:block" tasks={tasks} />
         <DarkModeToggle />
-        <h1 className="text-2xl">hi {user.name}!</h1>
+        <ThemeSelector />
+        <h1 className="inset-shadow-sm inset-shadow-black bg-background/20 sm:text-xl md:text-2xl text-lg text-center flex-grow max-w-60 min-w-20 truncate rounded p-1 mr-5">
+          hi {user.name}
+        </h1>
       </header>
 
-      <main className={`${toggleSideBar && "sm:pl-70"} pl-20`}>
+      <main className={`${toggleSideBar && "sm:pl-80"} pl-20`}>
         <SideBar
           taskCount={taskCount}
           activeBtn={activeBtn}

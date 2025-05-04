@@ -28,7 +28,7 @@ function LabelSection({
               toggleSideBar
                 ? "w-full! rounded-r-full pl-6! border-y-2 border-r-2"
                 : "rounded-full border-2"
-            } bg-sidebar hover:bg-sidebar-accent/50 text-sidebar-foreground transition-all transition-discrete duration-300 h-12 w-12 justify-start gap-4 border-dashed border-sidebar-foreground my-1`}
+            } bg-sidebar hover:bg-background text-sidebar-foreground transition-all transition-discrete duration-300 h-12 w-12 justify-start gap-4 border-dashed border-sidebar-foreground my-1`}
           >
             <TagIcon className="size-6! inline-block" />
 
@@ -48,14 +48,14 @@ function LabelSection({
           icon={<TagIcon className="size-6! inline-block" />}
           text={label}
           editAndDeleteIcon={
-            <div className="bg-[#2f2f31] rounded-full transition transition-discrete absolute right-1 top-2.5 flex opacity-0 group-hover:opacity-100">
+            <div className="bg-sidebar-accent rounded-full transition transition-discrete absolute right-1 top-2.5 flex opacity-0 group-hover:opacity-100">
               <EditLabelDialog
                 setActiveBtn={setActiveBtn}
                 currentLabel={label}
                 labelData={labelData}
                 triggerChild={
-                  <button className="transition transition-discrete flex justify-center items-center size-7 rounded-full p-1.5 hover:bg-gray-400">
-                    <PencilIcon className="transition transition-discrete size-4 inline-block text-gray-300" />
+                  <button className="transition transition-discrete flex justify-center items-center size-7 rounded-full p-1.5 hover:bg-background">
+                    <PencilIcon className="transition transition-discrete size-4 inline-block text-sidebar-foreground" />
                   </button>
                 }
               />
@@ -64,8 +64,8 @@ function LabelSection({
                 currentLabel={label}
                 labelData={labelData}
                 triggerChild={
-                  <button className="transition transition-discrete flex justify-center items-center size-7 rounded-full p-1.5 hover:bg-gray-400">
-                    <TrashIcon className="transition transition-discrete size-4 inline-block text-gray-300" />
+                  <button className="transition transition-discrete flex justify-center items-center size-7 rounded-full p-1.5 hover:bg-background">
+                    <TrashIcon className="transition transition-discrete size-4 inline-block text-sidebar-foreground" />
                   </button>
                 }
               />

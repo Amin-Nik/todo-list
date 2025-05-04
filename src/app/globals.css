@@ -82,195 +82,21 @@
   --accent: #7ad5ee;
   --accent-foreground: #18181b;
   --destructive: #e7000b;
-  /*? default  👇👇👇👇👇👇*/
-  /* --background: #9ae8b7; */
-  /* --sidebar: #6d9fe177; */
-  /* --header: #6da0e1; */
-  /*? default  ☝️☝️☝️☝️☝️*/
+  --background: #9ae8b7;
   --foreground: black;
+  --sidebar: #9ae8b7;
   --sidebar-foreground: black;
-  /* ? theme 1 🐽*/
-  /*! theme 1 sidebar accent 👇 */
   --sidebar-accent: #2f74c9;
-  /*! theme 1 card 👇 */
-  --card: #2f80e4;
-  /*! theme 1 background 👇 */
-  background-image: url("/theme1(L).png");
-
-  /* ? 🐽*/
-
-  /* ? theme 2 👀 */
-  /*! theme 2 sidebar accent 👇 */
-  /* --sidebar-accent: #197f81; */
-  /*! theme 2 card 👇 */
-  /* --card: #197f81; */
-  /*! theme 2 background 👇 */
-  /* background-image: url("/theme2(L).png"); */
-
-  /* ? 👀*/
-
-  /* ? theme 3 👽 */
-  /*! theme 3 sidebar accent 👇 */
-  /* --sidebar-accent: #2f74c9; */
-  /*! theme 3 card 👇 */
-  /* --card: #020bb8; */
-  /*! theme 3 background 👇 */
-  /* background-image: url("/theme3(L).png"); */
-
-  /* ? 👽*/
-
-  /* ? theme 4 🦄 */
-  /*! theme 4 sidebar accent 👇 */
-  /* --sidebar-accent: #fb937c; */
-  /*! theme 4 card 👇 */
-  /* --card: #f77659; */
-  /*! theme 4 background 👇 */
-  /* background-image: url("/theme4(L).jpg"); */
-
-  /* ? 🦄*/
-
-  /* ? theme 5 🤖*/
-  /*! theme 5 sidebar accent 👇 */
-  /* --sidebar-accent: #2aa0a0; */
-  /*! theme 5 card 👇 */
-  /* --card: #2aa0a0; */
-  /*! theme 5 background 👇 */
-  /* background-image: url("/theme5(L).jpg"); */
-
-  /* ? 🤖*/
-
-  /* ? theme 6 👾*/
-  /*! theme 6 sidebar accent 👇 */
-  /* --sidebar-accent: #014fa8; */
-  /*! theme 6 card 👇 */
-  /* --card: #014fa8; */
-  /*! theme 6 background 👇 */
-  /* background-image: url("/theme6(L).jpg"); */
-
-  /* ? 👾*/
-
-  /* ? theme 7 👻*/
-  /*! theme 7 sidebar accent 👇 */
-  /* --sidebar-accent: #7658b2; */
-  /*! theme 7 card 👇 */
-  /* --card: #ffc400; */
-  /* --card: #7658b2; */
-  /*! theme 7 background 👇 */
-  /* background-image: url("/theme7(L).jpg"); */
-
-  /* ? 👻*/
-
-  /* ? theme 9 🐲*/
-  /*! theme 9 sidebar accent 👇 */
-  /* --sidebar-accent: #ff3232; */
-  /*! theme 9 card 👇 */
-  /* --card: #ff3232; */
-  /*! theme 9 background 👇 */
-  /* background-image: url("/theme9(L).png"); */
-  /* ? 🐲*/
-
-  /* ? theme 10 🐾*/
-  /*! theme 10 sidebar accent 👇 */
-  /* --sidebar-accent: #ba96c1; */
-  /*! theme 10 slidebar background color 👇 */
-  /* --sidebar: #dedede; */
-  /*! theme 10 header 👇👇 */
-  /* --header: #dedede; */
-  /*! theme 10 card 👇 */
-  /* --card: #b677ae; */
-  /*! theme 10 background 👇 */
-  /* background: #dcd7d5; */
-  /* ? 🐾*/
-
-  /* ? theme 11 🦖*/
-  /*! theme 11 sidebar accent 👇 */
-  /* --sidebar-accent: #112250; */
-  /*! theme 11 slidebar background color 👇 */
-  /* --sidebar: #f5f0e9; */
-  /*! theme 11 header 👇👇 */
-  /* --header: #f5f0e9; */
-  /*! theme 11 card 👇 */
-  /* --card: #112250; */
-  /*! theme 11 background 👇 */
-  /* background: #d9cbc2; */
-
-  /* ? 🦖*/
-
-  /* ? theme 12 🐚*/
-  /*! theme 12 sidebar accent 👇 */
-  /* --sidebar-accent: #8fca97; */
-  /*! theme 12 slidebar background color 👇 */
-  /* --sidebar: #f0e1e5; */
-  /*! theme 12 header 👇👇 */
-  /* --header: #f0e1e5; */
-  /*! theme 12 slidebar-accent-foreground */
-  /* --sidebar-accent-foreground: #2d4839; */
-  /*! theme 12 card 👇 */
-  /* --card: #8fca97; */
-  /*! theme 12 card-foreground */
-  /* --card-foreground: #2d4839; */
-  /*! theme 12 background 👇 */
-  /* background: #eed4db; */
-  /* ? 🐚*/
-
-  /* ? theme 13 🐥*/
-  /*! theme 13 sidebar accent 👇 */
-  /* --sidebar-accent: #c43670; */
-  /*! theme 13 slidebar background color 👇 */
-  /* --sidebar: #fbf4eb; */
-  /*! theme 13 header 👇👇 */
-  /* --header: #fbf4eb; */
-  /*! theme 13 card 👇 */
-  /* --card: #c43670; */
-  /*! theme 13 card-foreground */
-  /* --card-foreground: #fbd9e5; */
-  /*! theme 13 background 👇 */
-  /* background: #fbd9e5; */
-  /* ? 🐥*/
-
-  /* ? theme 14 🦋*/
-  /*! theme 14 sidebar accent 👇 */
-  /* --sidebar-accent: #683924; */
-  /*! theme 14 slidebar background color 👇 */
-  /* --sidebar: #f9ece6; */
-  /*! theme 14 header 👇👇 */
-  /* --header: #f9ece6; */
-  /*! theme 14 card 👇 */
-  /* --card: #683924; */
-  /*! theme 14 background 👇 */
-  /* background: #f2d9ce; */
-  /* ? 🦋*/
-
-  /* ? theme 15 ✨*/
-  /*! theme 15 sidebar accent 👇 */
-  /* --sidebar-accent: #f4790d; */
-  /*! theme 15 slidebar background color 👇 */
-  /* --sidebar: #69b6b9; */
-  /*! theme 15 header 👇👇 */
-  /* --header: #69b6b9; */
-  /*! theme 15 card 👇 */
-  /* --card: #f4790d; */
-  /*! theme 15 background 👇 */
-  /* background: #3c9a9e; */
-  /* ? ✨*/
-
   --sidebar-accent-foreground: white;
-
+  --header: #9ae8b7;
   --header-foreground: black;
-
+  --card: #2f74c9;
   --card-foreground: white;
-
   --ring: #252525;
   --popover: #49afea;
   --popover-foreground: #09090b;
   --isComplete: #005f5a;
   --isComplete-foreground: white;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  width: 100%;
 }
 
 .aurora-dark {
@@ -279,218 +105,364 @@
   --accent: #16344d;
   --accent-foreground: #fafafa;
   --destructive: #82181a;
-  /* --background: #0e101c; */
-  --sidebar-accent-foreground: white;
-  --header-foreground: white;
-  --card-foreground: white;
+  --background: #0e101c;
   --foreground: white;
-
-  /* ? theme 1 🐽*/
-  /*! theme 1 sidebar bg color  👇*/
   --sidebar: #0e101c;
-  /*! theme 1 sidebar accent  👇*/
+  --sidebar-foreground: white;
   --sidebar-accent: #153649;
-  /*! theme 1 header bg color  👇*/
+  --sidebar-accent-foreground: white;
   --header: #0e101c;
-  /*! theme 1 card 👇 */
+  --header-foreground: white;
   --card: #153649;
-  /*! theme 1 background 👇 */
-  background-image: url("/theme1(D).png");
-
-  /* ? 🐽*/
-
-  /* ? theme 2 👀 */
-  /*! theme 2 sidebar bg color  👇*/
-  /* --sidebar: #051f1f; */
-  /*! theme 2 sidebar accent  👇*/
-  /* --sidebar-accent: #0a3939; */
-  /*! theme 2 header bg color  👇*/
-  /* --header: #051f1f; */
-  /*! theme 2 card 👇 */
-  /* --card: #072b2b; */
-  /*! theme 2 background 👇*/
-  /* background-image: url("/theme2(D).png"); */
-
-  /* ? 👀*/
-
-  /* ? theme 3 👽 */
-  /*! theme 3 sidebar bg color  👇*/
-  /* --sidebar: #0a112e; */
-  /*! theme 3 sidebar accent  👇*/
-  /* --sidebar-accent: #1b318b; */
-  /*! theme 3 header bg color  👇*/
-  /* --header: #0a112e; */
-  /*! theme 3 card 👇 */
-  /* --card: #182350; */
-  /*! theme 3 background 👇*/
-  /* background-image: url("/theme3(D).png"); */
-
-  /* ? 👽*/
-
-  /* ? theme 4 🦄 */
-  /*! theme 4 sidebar bg color  👇*/
-  /* --sidebar: #0a112e; */
-  /*! theme 4 sidebar accent  👇*/
-  /* --sidebar-accent: #1b318b; */
-  /*! theme 4 header bg color  👇*/
-  /* --header: #0a112e; */
-  /*! theme 4 card 👇 */
-  /* --card: #182350; */
-  /*! theme 4 background 👇 */
-  /* background-image: url("/theme4(D).jpg"); */
-
-  /* ? 🦄*/
-
-  /* ? theme 5 🤖*/
-  /*! theme 5 sidebar bg color  👇*/
-  /* --sidebar: #0a112e; */
-  /*! theme 5 sidebar accent  👇*/
-  /* --sidebar-accent: #1b318b; */
-  /*! theme 5 header bg color  👇*/
-  /* --header: #0a112e; */
-  /*! theme 5 card 👇 */
-  /* --card: #001631; */
-  /*! theme 5 background 👇 */
-  /* background-image: url("/theme5(D).jpg"); */
-
-  /* ? 🤖*/
-
-  /* ? theme 6 👾*/
-  /*! theme 6 sidebar bg color  👇*/
-  /* --sidebar: #0a112e; */
-  /*! theme 6 sidebar accent  👇*/
-  /* --sidebar-accent: #1b318b; */
-  /*! theme 6 header bg color  👇*/
-  /* --header: #0a112e; */
-  /*! theme 6 card 👇 */
-  /* --card: #001631; */
-  /*! theme 6 background 👇 */
-  /* background-image: url("/theme6(D).jpg"); */
-
-  /* ? 👾*/
-
-  /* ? theme 7 👻*/
-  /*! theme 7 sidebar bg color  👇*/
-  /* --sidebar: #1d0a13; */
-  /*! theme 7 sidebar accent  👇*/
-  /* --sidebar-accent: #5d203d; */
-  /*! theme 7 header bg color  👇*/
-  /* --header: #1d0a13; */
-  /*! theme 7 card 👇 */
-  /* --card: #47182f; */
-  /*! theme 7 background 👇 */
-  /* background-image: url("/theme7(D).jpg"); */
-
-  /* ? 👻*/
-
-  /* ? theme 9 🐲*/
-  /*! theme 9 sidebar bg color  👇*/
-  /* --sidebar: #1d0a13; */
-  /*! theme 9 sidebar accent  👇*/
-  /* --sidebar-accent: #5d203d; */
-  /*! theme 9 header bg color  👇*/
-  /* --header: #1d0a13; */
-  /*! theme 9 card 👇 */
-  /* --card: #501b35; */
-  /*! theme 9 background 👇 */
-  /* background-image: url("/theme9(D).png"); */
-
-  /* ? 🐲*/
-
-  /* ? theme 10 🐾*/
-  /*! theme 10 sidebar bg color  👇*/
-  /* --sidebar: #1f133b; */
-  /*! theme 10 sidebar accent  👇*/
-  /* --sidebar-accent: #7559cb; */
-  /*! theme 10 header bg color  👇*/
-  /* --header: #1f133b; */
-  /*! theme 10 card 👇 */
-  /* --card: #7559cb; */
-  /*! theme 10 background 👇 */
-  /* background: #332063; */
-
-  /* ? 🐾*/
-
-  /* ? theme 11 🦖*/
-  /*! theme 11 sidebar bg color  👇*/
-  /* --sidebar: #0e1a3f; */
-  /*! theme 11 sidebar accent  👇*/
-  /* --sidebar-accent: #d9cbc2; */
-  /*! theme 11 slidebar-accent-forground */
-  /* --sidebar-accent-foreground: #112250; */
-  /*! theme 11 header bg color  👇*/
-  /* --header: #0e1a3f; */
-  /*! theme 11 card 👇 */
-  /* --card: #d9cbc2; */
-  /* ! theme 11 card-foreground */
-  /* --card-foreground: #112250; */
-  /*! theme 11 background 👇 */
-  /* background: #0c1737; */
-
-  /* ? 🦖*/
-
-  /* ? theme 12 🐚*/
-  /*! theme 12 sidebar bg color  👇*/
-  /* --sidebar: #0e251b; */
-  /*! theme 12 sidebar accent  👇*/
-  /* --sidebar-accent: #bd7880; */
-  /*! theme 12 header bg color  👇*/
-  /* --header: #0e251b; */
-  /*! theme 12 card 👇 */
-  /* --card: #bd7880; */
-  /*! theme 12 background 👇 */
-  /* background: #102b1f; */
-
-  /* ? 🐚*/
-
-  /* ? theme 13 🐥*/
-  /*! theme 13 sidebar bg color  👇*/
-  /* --sidebar: #503a4a; */
-  /*! theme 13 sidebar accent  👇*/
-  /* --sidebar-accent: #321f2d; */
-  /*! theme 13 header bg color  👇*/
-  /* --header: #503a4a; */
-  /*! theme 13 card 👇 */
-  /* --card: #b89ac9; */
-  /*! theme 13 background 👇 */
-  /* background: #321f2d; */
-
-  /* ? 🐥*/
-
-  /* ? theme 14 🦋*/
-  /*! theme 14 sidebar bg color  👇*/
-  /* --sidebar: #2d1d11; */
-  /*! theme 14 sidebar accent  👇*/
-  /* --sidebar-accent: #a57865; */
-  /*! theme 14 header bg color  👇*/
-  /* --header: #2d1d11; */
-  /*! theme 14 card 👇 */
-  /* --card: #a57865; */
-  /*! theme 14 background 👇 */
-  /* background: #372414; */
-
-  /* ? 🦋*/
-
-  /* ? theme 15 ✨*/
-  /*! theme 15 sidebar bg color  👇*/
-  /* --sidebar: #011943; */
-  /*! theme 15 sidebar accent  👇*/
-  /* --sidebar-accent: #f0400f; */
-  /*! theme 15 header bg color  👇*/
-  /* --header: #011943; */
-  /*! theme 15 card 👇 */
-  /* --card: #f04004; */
-  /*! theme 15 background 👇 */
-  /* background: #001f54; */
-
-  /* ? ✨*/
-
+  --card-foreground: white;
   --popover: #001b2e;
   --ring: white;
   --popover-foreground: #fafafa;
   --isComplete: #005f5a;
   --isComplete-foreground: white;
+}
 
+.theme1 {
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --accent: #7382e0;
+  --accent-foreground: #18181b;
+  --destructive: #e7000b;
+  --background: #f06bff;
+  --foreground: black;
+  /* --sidebar: #6d9fe177; */
+  --sidebar-foreground: black;
+  --sidebar-accent: #2f80e4;
+  --sidebar-accent-foreground: white;
+  /* --header: #6da0e1; */
+  --header-foreground: black;
+  --card: #2f80e4;
+  --card-foreground: white;
+  --ring: #252525;
+  --popover: #d899c7;
+  --popover-foreground: #09090b;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme1(L).png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme1-dark {
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --accent: #16344d;
+  --accent-foreground: #fafafa;
+  --destructive: #82181a;
+  --background: #24046f;
+  --foreground: white;
+  /* --sidebar: #0e101c; */
+  --sidebar-foreground: white;
+  --sidebar-accent: #002151;
+  --sidebar-accent-foreground: black;
+  /* --header: #0e101c; */
+  --header-foreground: white;
+  --card: #002151;
+  --card-foreground: white;
+  --popover: #061327;
+  --ring: white;
+  --popover-foreground: #fafafa;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme1(D).png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme2 {
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --accent: #00a77c;
+  --accent-foreground: #18181b;
+  --destructive: #e7000b;
+  --background: #93fd70;
+  --foreground: black;
+  /* --sidebar: #6d9fe177; */
+  --sidebar-foreground: black;
+  --sidebar-accent: #007b6d;
+  --sidebar-accent-foreground: white;
+  /* --header: #6da0e1; */
+  --header-foreground: black;
+  --card: #007b6d;
+  --card-foreground: white;
+  --ring: #252525;
+  --popover: #4cd37d;
+  --popover-foreground: #09090b;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme2(L).png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme2-dark {
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --accent: #043c32;
+  --accent-foreground: #fafafa;
+  --destructive: #82181a;
+  --background: #186446;
+  --foreground: white;
+  /* --sidebar: #051f1f; */
+  --sidebar-foreground: white;
+  --sidebar-accent: #0a3535;
+  --sidebar-accent-foreground: black;
+  /* --header: #051f1f; */
+  --header-foreground: white;
+  --card: #0a3535;
+  --card-foreground: white;
+  --popover: #09503d;
+  --ring: white;
+  --popover-foreground: #fafafa;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme2(D).png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme3 {
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --accent: #477dfb;
+  --accent-foreground: #18181b;
+  --destructive: #e7000b;
+  --background: #2d9ea4;
+  --foreground: black;
+  /* --sidebar: #6d9fe177; */
+  --sidebar-foreground: black;
+  --sidebar-accent: #1365c2;
+  --sidebar-accent-foreground: white;
+  /* --header: #6da0e1; */
+  --header-foreground: black;
+  --card: #1365c2;
+  --card-foreground: white;
+  --ring: #252525;
+  --popover: #549bff;
+  --popover-foreground: #09090b;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme3(L).jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme3-dark {
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --accent: #00447b;
+  --accent-foreground: #fafafa;
+  --destructive: #82181a;
+  --background: #004f73;
+  --foreground: white;
+  /* --sidebar: #0a112e; */
+  --sidebar-foreground: white;
+  --sidebar-accent: #0b307a;
+  --sidebar-accent-foreground: black;
+  /* --header: #0a112e; */
+  --header-foreground: white;
+  --card: #0b307a;
+  --card-foreground: white;
+  --popover: #002c4b;
+  --ring: white;
+  --popover-foreground: #fafafa;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme3(D).jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme4 {
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --accent: #ea8c99;
+  --accent-foreground: #18181b;
+  --destructive: #e7000b;
+  --background: #fdab98;
+  --foreground: black;
+  /* --sidebar: #6d9fe177; */
+  --sidebar-foreground: black;
+  --sidebar-accent: #60acd0;
+  --sidebar-accent-foreground: white;
+  /* --header: #6da0e1; */
+  --header-foreground: black;
+  --card: #60acd0;
+  --card-foreground: white;
+  --ring: #252525;
+  --popover: #e9aaaa;
+  --popover-foreground: #09090b;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme4(L).jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme4-dark {
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --accent: #3a2b64;
+  --accent-foreground: #fafafa;
+  --destructive: #82181a;
+  --background: #1f1d5b;
+  --foreground: white;
+  /* --sidebar: #0a112e; */
+  --sidebar-foreground: white;
+  --sidebar-accent: #4d1a50;
+  --sidebar-accent-foreground: black;
+  /* --header: #0a112e; */
+  --header-foreground: white;
+  --card: #4d1a50;
+  --card-foreground: white;
+  --popover: #2b1448;
+  --ring: white;
+  --popover-foreground: #fafafa;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme4(D).jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme5 {
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --accent: #1498c8;
+  --accent-foreground: #18181b;
+  --destructive: #e7000b;
+  --background: #177cff;
+  --foreground: black;
+  /* --sidebar: #6d9fe177; */
+  --sidebar-foreground: black;
+  --sidebar-accent: #2aa0a0;
+  --sidebar-accent-foreground: white;
+  /* --header: #6da0e1; */
+  --header-foreground: black;
+  --card: #2aa0a0;
+  --card-foreground: white;
+  --ring: #252525;
+  --popover: #52e1c2;
+  --popover-foreground: #09090b;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme5(L).jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme5-dark {
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --accent: #16344d;
+  --accent-foreground: #fafafa;
+  --destructive: #82181a;
+  --background: #0e362c;
+  --foreground: white;
+  /* --sidebar: #0a112e; */
+  --sidebar-foreground: white;
+  --sidebar-accent: #082336;
+  --sidebar-accent-foreground: black;
+  /* --header: #0a112e; */
+  --header-foreground: white;
+  --card: #082336;
+  --card-foreground: white;
+  --popover: #001b2e;
+  --ring: white;
+  --popover-foreground: #fafafa;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme5(D).jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme6 {
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --accent: #8c6bce;
+  --accent-foreground: #18181b;
+  --destructive: #e7000b;
+  --background: #91b3fd;
+  --foreground: black;
+  /* --sidebar: #6d9fe177; */
+  --sidebar-foreground: black;
+  --sidebar-accent: #7658b2;
+  --sidebar-accent-foreground: white;
+  /* --header: #6da0e1; */
+  --header-foreground: black;
+  --card: #7658b2;
+  --card-foreground: white;
+  --ring: #252525;
+  --popover: #a79cfa;
+  --popover-foreground: #09090b;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme7(L).jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.theme6-dark {
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --accent: #16344d;
+  --accent-foreground: #fafafa;
+  --destructive: #82181a;
+  --background: #16344d;
+  --foreground: white;
+  /* --sidebar: #1d0a13; */
+  --sidebar-foreground: white;
+  --sidebar-accent: #3a1438;
+  --sidebar-accent-foreground: black;
+  /* --header: #1d0a13; */
+  --header-foreground: white;
+  --card: #3a1438;
+  --card-foreground: white;
+  --popover: #120a2f;
+  --ring: white;
+  --popover-foreground: #fafafa;
+  --isComplete: #005f5a;
+  --isComplete-foreground: white;
+  background-image: url("/theme7(D).jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
