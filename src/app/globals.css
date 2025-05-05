@@ -66,7 +66,7 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar: oklch(0.141 0.005 285.823);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
@@ -74,52 +74,6 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.274 0.006 286.033);
   --sidebar-ring: oklch(0.442 0.017 285.786);
-}
-
-.aurora {
-  --primary: #18181b;
-  --primary-foreground: #fafafa;
-  --accent: #7ad5ee;
-  --accent-foreground: #18181b;
-  --destructive: #e7000b;
-  --background: #9ae8b7;
-  --foreground: black;
-  --sidebar: #9ae8b7;
-  --sidebar-foreground: black;
-  --sidebar-accent: #2f74c9;
-  --sidebar-accent-foreground: white;
-  --header: #9ae8b7;
-  --header-foreground: black;
-  --card: #2f74c9;
-  --card-foreground: white;
-  --ring: #252525;
-  --popover: #49afea;
-  --popover-foreground: #09090b;
-  --isComplete: #005f5a;
-  --isComplete-foreground: white;
-}
-
-.aurora-dark {
-  --primary: #fafafa;
-  --primary-foreground: #18181b;
-  --accent: #16344d;
-  --accent-foreground: #fafafa;
-  --destructive: #82181a;
-  --background: #0e101c;
-  --foreground: white;
-  --sidebar: #0e101c;
-  --sidebar-foreground: white;
-  --sidebar-accent: #153649;
-  --sidebar-accent-foreground: white;
-  --header: #0e101c;
-  --header-foreground: white;
-  --card: #153649;
-  --card-foreground: white;
-  --popover: #001b2e;
-  --ring: white;
-  --popover-foreground: #fafafa;
-  --isComplete: #005f5a;
-  --isComplete-foreground: white;
 }
 
 .theme1 {
@@ -433,7 +387,7 @@
   --popover-foreground: #09090b;
   --isComplete: #005f5a;
   --isComplete-foreground: white;
-  background-image: url("/theme7(L).jpg");
+  background-image: url("/theme6(L).jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -462,7 +416,7 @@
   --popover-foreground: #fafafa;
   --isComplete: #005f5a;
   --isComplete-foreground: white;
-  background-image: url("/theme7(D).jpg");
+  background-image: url("/theme6(D).jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

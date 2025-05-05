@@ -18,17 +18,22 @@ function ThemeSelector() {
       body.classList.remove(bodyClass);
       body.classList.add(theme + "-dark");
       setBodyClassName(theme);
+      window.localStorage.setItem("themeName", theme + "-dark");
     } else {
       body.classList.remove(bodyClass);
       body.classList.add(theme);
       setBodyClassName(theme);
+      window.localStorage.setItem("themeName", theme);
     }
   };
 
   useEffect(() => {
     const body = document.body;
     const bodyClass = body.className;
-    setBodyClassName(bodyClass);
+    if (bodyClass.indexOf("-dark") !== -1) {
+      const slicedBodyClass = bodyClass.slice(0, bodyClass.indexOf("-dark"));
+      setBodyClassName(slicedBodyClass);
+    } else setBodyClassName(bodyClass);
   }, []);
 
   return (

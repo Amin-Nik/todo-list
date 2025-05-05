@@ -11,14 +11,29 @@ function DarkModeToggle() {
       const slicedBodyClass = bodyClass.slice(0, bodyClass.indexOf("-dark"));
       body.classList.remove(bodyClass);
       body.classList.add(slicedBodyClass);
+      window.localStorage.setItem("themeName", slicedBodyClass);
     } else {
       body.classList.remove(bodyClass);
       body.classList.add(bodyClass + "-dark");
+      window.localStorage.setItem("themeName", bodyClass + "-dark");
     }
     setDarkMode(!darkMode);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const themeName = window.localStorage.getItem("themeName");
+    const body = document.body;
+    if (themeName) {
+      if (themeName.indexOf("-dark") == -1) setDarkMode(false);
+      else setDarkMode(true);
+
+      body.classList.remove(body.className);
+      body.classList.add(themeName);
+    } else {
+      body.classList.remove(body.className);
+      body.classList.add("theme1");
+    }
+  }, []);
 
   return (
     <div
