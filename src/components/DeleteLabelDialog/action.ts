@@ -1,10 +1,13 @@
 "use server";
 import { prisma } from "@/lib/prisma";
+import { verifySession } from "@/lib/session";
 import { revalidateTag } from "next/cache";
 
 export async function deleteLabel(labelData: string[], currentLabel: string) {
+  const userId = await verifySession();
+
   const tasks = await prisma.task.findMany({
-    where: { userId: "67c9dcc075cddd2f8bc99e69" },
+    where: { userId },
   });
 
   tasks.map((task) => {
@@ -14,7 +17,7 @@ export async function deleteLabel(labelData: string[], currentLabel: string) {
   });
 
   await prisma.task.deleteMany({
-    where: { userId: "67c9dcc075cddd2f8bc99e69" },
+    where: { userId },
   });
 
   await prisma.task.createMany({
@@ -25,7 +28,7 @@ export async function deleteLabel(labelData: string[], currentLabel: string) {
 
   const deletedLabel = await prisma.user.update({
     where: {
-      id: "67c9dcc075cddd2f8bc99e69",
+      id: userId,
     },
     data: {
       labels: labels,

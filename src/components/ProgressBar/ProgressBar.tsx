@@ -19,7 +19,8 @@ function ProgressBar({
     const AllTaskLength = tasks?.length || 0;
     const completedTaskLength =
       tasks?.filter((task) => task.isComplete).length || 0;
-    const completeness = (completedTaskLength / AllTaskLength) * 100;
+    let completeness = (completedTaskLength / AllTaskLength) * 100;
+    if (isNaN(completeness)) completeness = 0;
     const reverseCompleteness = 100 - completeness;
     setTasksLengths([AllTaskLength, completedTaskLength]);
     setProgress(reverseCompleteness);
@@ -37,7 +38,7 @@ function ProgressBar({
             style={{ width: `${progress}%` }}
             className={`h-5 ${
               progress == 100 ? "rounded-full" : "rounded-r-full"
-            } bg-gray-500 shadow-[inset_0_10px_10px_-13px_rgba(0,0,0,1),inset_0_-10px_10px_-13px_rgba(0,0,0,1)] transition-all duration-700`}
+            } bg-gray-950 shadow-[inset_0_10px_10px_-13px_rgba(0,0,0,1),inset_0_-10px_10px_-13px_rgba(0,0,0,1)] transition-all duration-700`}
           ></div>
         </div>
       </div>

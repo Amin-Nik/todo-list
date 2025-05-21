@@ -1,5 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
+import { verifySession } from "@/lib/session";
 import { revalidateTag } from "next/cache";
 
 export async function editLabel(
@@ -7,13 +8,15 @@ export async function editLabel(
   newLabel: string,
   currentLabel: string
 ) {
+  const userId = await verifySession();
+
   if (newLabel !== currentLabel) {
     if (labelData.includes(newLabel))
       throw new Error("this label is already exist!");
     if (!newLabel.trim()) throw new Error("label can't be empty");
 
     const tasks = await prisma.task.findMany({
-      where: { userId: "67c9dcc075cddd2f8bc99e69" },
+      where: { userId },
     });
 
     tasks.map((task) => {
@@ -25,7 +28,7 @@ export async function editLabel(
     });
 
     await prisma.task.deleteMany({
-      where: { userId: "67c9dcc075cddd2f8bc99e69" },
+      where: { userId },
     });
 
     await prisma.task.createMany({
@@ -37,7 +40,7 @@ export async function editLabel(
 
     const label = await prisma.user.update({
       where: {
-        id: "67c9dcc075cddd2f8bc99e69",
+        id: userId,
       },
       data: {
         labels: labelData,
