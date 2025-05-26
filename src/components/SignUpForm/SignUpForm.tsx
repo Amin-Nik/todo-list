@@ -4,22 +4,47 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { signUp } from "./action";
+import { LoaderCircle } from "lucide-react";
 
 function SignUpForm() {
   const [form, setForm] = useState<{
     name: string;
-    email: string;
+    userName: string;
     password: string;
   }>({
     name: "",
-    email: "",
+    userName: "",
     password: "",
   });
+  const [btnLoadingState, setBtnLoadingState] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      buttonRef.current?.click();
+    }
+  };
 
   const handleClick = async () => {
-    await signUp(form);
+    try {
+      setBtnLoadingState(true);
+      await signUp(form);
+    } catch (error) {
+      if (
+        error ==
+          "Error: user name is taken \n please try again with another user name" ||
+        error == "Error: name can't be empty" ||
+        error == "Error: user name can't be empty" ||
+        error == "Error: password can't be empty"
+      ) {
+        alert(error);
+      }
+    } finally {
+      setBtnLoadingState(false);
+    }
   };
 
   return (
@@ -31,6 +56,7 @@ function SignUpForm() {
             Name
           </Label>
           <Input
+            onKeyDown={handleKeyDown}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             value={form.name}
             id="name"
@@ -39,15 +65,16 @@ function SignUpForm() {
           />
         </div>
         <div className="">
-          <Label htmlFor="email" className="ml-1 mb-2">
-            Email address
+          <Label htmlFor="userName" className="ml-1 mb-2">
+            User Name
           </Label>
           <Input
-            type="email"
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            value={form.email}
-            id="email"
-            placeholder="your email address..."
+            onKeyDown={handleKeyDown}
+            type="text"
+            onChange={(e) => setForm({ ...form, userName: e.target.value })}
+            value={form.userName}
+            id="userName"
+            placeholder="your User Name..."
             className=""
           />
         </div>
@@ -56,6 +83,7 @@ function SignUpForm() {
             Password
           </Label>
           <Input
+            onKeyDown={handleKeyDown}
             type="password"
             onChange={(e) => setForm({ ...form, password: e.target.value })}
             value={form.password}
@@ -64,12 +92,25 @@ function SignUpForm() {
             className=""
           />
         </div>
-        <Button
-          onClick={handleClick}
-          className="w-full bg-[#08a6ba] hover:bg-[#08a6ba]/80"
-        >
-          Sign up
-        </Button>
+        {btnLoadingState ? (
+          <Button
+            disabled
+            ref={buttonRef}
+            onClick={handleClick}
+            className="w-full bg-[#08a6ba] hover:bg-[#08a6ba]/80"
+          >
+            <LoaderCircle className="animate-spin" />
+            please wait...
+          </Button>
+        ) : (
+          <Button
+            ref={buttonRef}
+            onClick={handleClick}
+            className="w-full bg-[#08a6ba] hover:bg-[#08a6ba]/80"
+          >
+            Sign up
+          </Button>
+        )}
         <p className="text-center">
           Already have an account?{" "}
           <Link

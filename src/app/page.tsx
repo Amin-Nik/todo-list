@@ -5,6 +5,9 @@ export default async function Home() {
   const userAndTasks = await findUserAndTasksBySession();
   const user = userAndTasks?.user;
   const tasks = userAndTasks?.tasks;
-
-  return <>{user && <HomeContainer user={user} tasks={tasks} />}</>;
+  return (
+    <>
+      <HomeContainer user={user} tasks={tasks} />
+    </>
+  );
 }

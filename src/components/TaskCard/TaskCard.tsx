@@ -12,13 +12,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import TaskExpandDialog from "../TaskExpandDialog/TaskExpandDialog";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 
-function TaskCard({
-  data,
-  labels,
-}: {
-  data: Task | undefined;
-  labels: string[];
-}) {
+function TaskCard({ data, labels }: { data: Task; labels: string[] }) {
   return (
     <>
       {data && (

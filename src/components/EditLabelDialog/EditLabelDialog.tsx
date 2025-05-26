@@ -57,7 +57,7 @@ function EditLabelDialog({
       setOpen(false);
       setActiveBtn((e) => (e == currentLabel ? newLabel : e));
     } catch (error) {
-      alert(error);
+      console.log(error);
       setBtnLoadingState(false);
     }
   };

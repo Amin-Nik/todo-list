@@ -8,7 +8,7 @@ function Tasks({
   labels,
   activeBtn,
 }: {
-  tasks: Task[] | undefined;
+  tasks: Task[];
   labels: string[];
   activeBtn: string;
 }) {

@@ -8,16 +8,11 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import filterTasks from "@/utils/filterTasks";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import ThemeSelector from "../ThemeSelector/ThemeSelector";
+import LogOutButton from "../LogOutButton/LogOutButton";
 
-function HomeContainer({
-  tasks,
-  user,
-}: {
-  tasks: Task[] | undefined;
-  user: User;
-}) {
+function HomeContainer({ tasks, user }: { tasks: Task[]; user: User }) {
   const [searchParams, setSearchParams] = useState([" All Task ", ""]);
-  const [filteredTask, setFilteredTask] = useState<Task[]>();
+  const [filteredTask, setFilteredTask] = useState<Task[]>([]);
   const [activeBtn, setActiveBtn] = useState(searchParams[0]);
   const [toggleSideBar, setToggleSideBar] = useState(true);
   const [taskCount, setTaskCount] = useState(0);
@@ -46,9 +41,7 @@ function HomeContainer({
         <ProgressBar className="hidden lg:block" tasks={tasks} />
         <DarkModeToggle />
         <ThemeSelector />
-        <h1 className="inset-shadow-sm inset-shadow-black bg-background/20 sm:text-xl md:text-2xl text-lg text-center flex-grow max-w-60 min-w-20 truncate rounded p-1 mr-5">
-          hi {user.name}
-        </h1>
+        <LogOutButton nameOfTheUser={user.name} />
       </header>
 
       <main className={`${toggleSideBar && "sm:pl-80"} pl-20`}>

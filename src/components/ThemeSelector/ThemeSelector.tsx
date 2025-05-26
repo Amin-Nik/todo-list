@@ -38,7 +38,7 @@ function ThemeSelector() {
 
   return (
     <Popover modal={true}>
-      <PopoverTrigger className="bg-[url(/colorful.jpg)] bg-cover bg-center rounded-b-3xl rounded-tl-xs rounded-tr-xs p-2 text-black border border-header-foreground">
+      <PopoverTrigger className="cursor-pointer bg-[url(/colorful.jpg)] bg-cover bg-center rounded-b-3xl rounded-tl-xs rounded-tr-xs p-2 text-black border border-header-foreground">
         Themes
       </PopoverTrigger>
       <PopoverContent className="flex flex-col max-h-60 w-28 overflow-auto py-1.5 px-0">

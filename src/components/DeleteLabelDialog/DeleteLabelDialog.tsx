@@ -37,7 +37,7 @@ function DeleteLabelDialog({
       setOpen(false);
       setActiveBtn((e) => (e == currentLabel ? " All Task " : e));
     } catch (error) {
-      alert(error);
+      console.log(error);
       setBtnLoadingState(false);
     }
   };

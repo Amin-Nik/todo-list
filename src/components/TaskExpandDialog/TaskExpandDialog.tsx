@@ -56,7 +56,7 @@ function TaskExpandDialog({
       setBtnLoadingState(false);
       setOpen(false);
     } catch (error) {
-      alert(error);
+      console.log(error);
       setBtnLoadingState(false);
     }
   };
@@ -67,7 +67,7 @@ function TaskExpandDialog({
       setBtnLoadingState(false);
       setOpen(false);
     } catch (error) {
-      alert(error);
+      console.log(error);
       setBtnLoadingState(false);
     }
   };

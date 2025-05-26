@@ -5,7 +5,7 @@ function ProgressBar({
   tasks,
   className,
 }: {
-  tasks: Task[] | undefined;
+  tasks: Task[];
   className?: string;
 }) {
   const [progress, setProgress] = useState(100);

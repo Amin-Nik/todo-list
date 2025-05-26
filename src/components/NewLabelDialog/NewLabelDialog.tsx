@@ -47,7 +47,7 @@ function NewLabelDialog({
       setBtnLoadingState(false);
       setOpen(false);
     } catch (error) {
-      alert(error);
+      console.log(error);
       setNewLabel("");
       setBtnLoadingState(false);
     }

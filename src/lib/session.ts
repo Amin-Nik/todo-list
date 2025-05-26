@@ -52,4 +52,5 @@ export async function verifySession() {
 export async function deleteSession() {
   const cookieStore = await cookies();
   cookieStore.delete("session");
+  redirect("/login");
 }
