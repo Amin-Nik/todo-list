@@ -29,9 +29,9 @@ function LabelPopover({
   >;
 }) {
   return (
-    <Popover modal={true}>
+    <Popover>
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
-      <PopoverContent className="flex flex-col max-h-60 w-60 overflow-auto py-4 px-0">
+      <PopoverContent className="flex flex-col max-h-60 w-60 overflow-auto py-4 px-0 pointer-events-auto">
         {labels.map((label, index) => (
           <div className="flex items-center gap-2" key={index}>
             <Label

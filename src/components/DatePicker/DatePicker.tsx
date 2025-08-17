@@ -1,9 +1,7 @@
 "use client";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -32,6 +30,7 @@ function DatePicker({
     }>
   >;
 }) {
+  const [open, setOpen] = useState(false);
   const [date, setDate] = useState(taskDate);
 
   useEffect(() => {
@@ -39,24 +38,25 @@ function DatePicker({
   }, [taskDate]);
 
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant={"outline"}
-          className={cn(
-            "w-fit h-fit justify-start text-left font-normal border-ring px-2! py-1 cursor-pointer",
-            !date && "text-muted-foreground",
-            isDisabled
-              ? "bg-card hover:bg-card hover:text-card-foreground"
-              : "bg-popover"
-          )}
+          variant="outline"
+          className={`w-fit h-fit justify-start text-left font-normal border-ring px-2! py-1 cursor-pointer 
+            ${!date && "text-muted-foreground"}
+            ${
+              isDisabled
+                ? "bg-card hover:bg-card hover:text-card-foreground"
+                : "bg-popover"
+            }`}
         >
           <CalendarIcon />
-          {date ? format(date, "PP") : <span>No Date Selected</span>}
+          {date ? format(date, "PP") : <span>Select Date</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
         <Calendar
+          className="pointer-events-auto"
           mode="single"
           selected={date}
           onSelect={(e) => {
@@ -66,8 +66,8 @@ function DatePicker({
                 ...task,
                 date: e == undefined ? null : e,
               }));
+            setOpen(false);
           }}
-          initialFocus
         />
       </PopoverContent>
     </Popover>
