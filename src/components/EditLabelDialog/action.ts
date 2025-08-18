@@ -10,47 +10,46 @@ export async function editLabel(
 ) {
   const userId = await verifySession();
 
-  if (newLabel !== currentLabel) {
-    if (labelData.includes(newLabel))
-      throw new Error("this label is already exist!");
-    if (!newLabel.trim()) throw new Error("label can't be empty");
+  if (newLabel == currentLabel) throw new Error("it's the same label!");
+  if (labelData.includes(newLabel))
+    throw new Error("this label is already exist!");
+  if (!newLabel.trim()) throw new Error("label can't be empty");
 
-    const tasks = await prisma.task.findMany({
-      where: { userId },
-    });
+  const tasks = await prisma.task.findMany({
+    where: { userId },
+  });
 
-    tasks.map((task) => {
-      if (task.labels.includes(currentLabel)) {
-        const index = task.labels.indexOf(currentLabel);
-        task.labels.splice(index, 1, newLabel.trim());
-      }
-      return task;
-    });
+  tasks.map((task) => {
+    if (task.labels.includes(currentLabel)) {
+      const index = task.labels.indexOf(currentLabel);
+      task.labels.splice(index, 1, newLabel.trim());
+    }
+    return task;
+  });
 
-    await prisma.task.deleteMany({
-      where: { userId },
-    });
+  await prisma.task.deleteMany({
+    where: { userId },
+  });
 
-    await prisma.task.createMany({
-      data: tasks,
-    });
+  await prisma.task.createMany({
+    data: tasks,
+  });
 
-    const index = labelData.indexOf(currentLabel);
-    labelData.splice(index, 1, newLabel.trim());
+  const index = labelData.indexOf(currentLabel);
+  labelData.splice(index, 1, newLabel.trim());
 
-    const label = await prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data: {
-        labels: labelData,
-      },
-      select: {
-        labels: true,
-      },
-    });
+  const label = await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      labels: labelData,
+    },
+    select: {
+      labels: true,
+    },
+  });
 
-    revalidateTag("");
-    return label.labels[index];
-  } else return currentLabel;
+  revalidateTag("");
+  return label.labels[index];
 }

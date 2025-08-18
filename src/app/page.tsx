@@ -3,8 +3,8 @@ import { findUserAndTasksBySession } from "@/utils/action";
 
 export default async function Home() {
   const userAndTasks = await findUserAndTasksBySession();
-  const user = userAndTasks?.user;
-  const tasks = userAndTasks?.tasks;
+  const user = userAndTasks.user;
+  const tasks = userAndTasks.tasks;
   return (
     <>
       <HomeContainer user={user} tasks={tasks} />

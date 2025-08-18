@@ -13,9 +13,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import { editLabel } from "./action";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { labelSchema } from "@/lib/zod/schema";
+import { z } from "zod";
+
+type LabelSchema = z.infer<typeof labelSchema>;
 
 function EditLabelDialog({
   triggerChild,
@@ -29,36 +35,27 @@ function EditLabelDialog({
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [open, setOpen] = useState(false);
-  const [newLabel, setNewLabel] = useState(currentLabel);
-  const [btnLoadingState, setBtnLoadingState] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    setNewLabel(currentLabel);
-  }, [open]);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<LabelSchema>({
+    defaultValues: { title: currentLabel },
+    resolver: zodResolver(labelSchema),
+  });
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      buttonRef.current?.click();
-    }
-  };
-
-  const handleClick = async () => {
+  const onSubmit = async (data: LabelSchema) => {
     try {
-      setBtnLoadingState(true);
-      const newLabelResponse = await editLabel(
-        labelData,
-        newLabel,
-        currentLabel
-      );
-      setNewLabel(newLabelResponse);
-      setBtnLoadingState(false);
+      await editLabel(labelData, data.title, currentLabel);
       setOpen(false);
-      setActiveBtn((e) => (e == currentLabel ? newLabel : e));
+      setActiveBtn((e) => (e == currentLabel ? data.title : e));
+      reset(data);
     } catch (error) {
-      console.log(error);
-      setBtnLoadingState(false);
+      const strError = error instanceof Error ? error.message : "Server error";
+      setError("title", { type: "server", message: strError });
     }
   };
 
@@ -70,38 +67,43 @@ function EditLabelDialog({
           <DialogTitle>Edit Label</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input
-              onKeyDown={handleKeyDown}
-              onChange={(e) => setNewLabel(e.target.value)}
-              value={newLabel}
-              id="name"
-              placeholder="New Label 1"
-              className="col-span-3"
-            />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Name
+              </Label>
+              <Input
+                {...register("title")}
+                id="name"
+                placeholder="New Label 1"
+                className="col-span-3"
+              />
+              <p className="col-span-3 col-start-2 pb-4 ml-2 text-start text-red-500 static">
+                {errors.title?.message}
+              </p>
+            </div>
           </div>
-        </div>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button disabled={btnLoadingState} variant={"destructive"}>
-              Cancel
-            </Button>
-          </DialogClose>
-          {btnLoadingState ? (
-            <Button disabled>
-              <LoaderCircle className="animate-spin" />
-              please wait...
-            </Button>
-          ) : (
-            <Button ref={buttonRef} onClick={handleClick}>
-              Save
-            </Button>
-          )}
-        </DialogFooter>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button
+                disabled={isSubmitting}
+                onClick={() => reset()}
+                variant={"destructive"}
+              >
+                Cancel
+              </Button>
+            </DialogClose>
+            {isSubmitting ? (
+              <Button disabled>
+                <LoaderCircle className="animate-spin" />
+                please wait...
+              </Button>
+            ) : (
+              <Button>Save</Button>
+            )}
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );
