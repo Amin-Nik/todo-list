@@ -9,25 +9,27 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ControllerRenderProps } from "react-hook-form";
 
 function DatePicker({
   taskDate,
   isDisabled,
-  setparentDate,
+  field,
 }: {
-  taskDate: Date | undefined;
+  taskDate?: Date;
   isDisabled?: boolean;
-  setparentDate?: React.Dispatch<
-    React.SetStateAction<{
-      title: string;
+  field: ControllerRenderProps<
+    {
       id: string;
-      date: Date | null;
+      date: unknown;
       description: string;
       isComplete: boolean;
       isImportant: boolean;
       labels: string[];
+      title: string;
       userId: string;
-    }>
+    },
+    "date"
   >;
 }) {
   const [open, setOpen] = useState(false);
@@ -61,13 +63,18 @@ function DatePicker({
           selected={date}
           onSelect={(e) => {
             setDate(e);
-            if (setparentDate)
-              setparentDate((task) => ({
-                ...task,
-                date: e == undefined ? null : e,
-              }));
+            field.onChange(e ? e : null);
             setOpen(false);
           }}
+          // onSelect={(e) => {
+          //   setDate(e);
+          //   if (setparentDate)
+          //     setparentDate((task) => ({
+          //       ...task,
+          //       date: e == undefined ? null : e,
+          //     }));
+          //   setOpen(false);
+          // }}
         />
       </PopoverContent>
     </Popover>

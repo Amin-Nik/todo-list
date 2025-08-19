@@ -5,27 +5,27 @@ import {
 } from "@/components/ui/popover";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
+import { ControllerRenderProps } from "react-hook-form";
 
 function LabelPopover({
   trigger,
   labels,
-  taskLabels,
-  setparentLabels,
+  field,
 }: {
   trigger: React.ReactNode;
   labels: string[];
-  taskLabels: string[];
-  setparentLabels: React.Dispatch<
-    React.SetStateAction<{
-      title: string;
+  field: ControllerRenderProps<
+    {
       id: string;
-      date: Date | null;
+      date: unknown;
       description: string;
       isComplete: boolean;
       isImportant: boolean;
       labels: string[];
+      title: string;
       userId: string;
-    }>
+    },
+    "labels"
   >;
 }) {
   return (
@@ -40,15 +40,14 @@ function LabelPopover({
               htmlFor={"label" + index}
             >
               <Checkbox
-                onClick={() => {
-                  setparentLabels((task) => ({
-                    ...task,
-                    labels: taskLabels.includes(label)
-                      ? taskLabels.filter((l) => l !== label)
-                      : [...taskLabels, label],
-                  }));
-                }}
-                defaultChecked={taskLabels.includes(label)}
+                onClick={() =>
+                  field.onChange(
+                    field.value.includes(label)
+                      ? field.value.filter((l) => l !== label)
+                      : [...field.value, label]
+                  )
+                }
+                defaultChecked={field.value.includes(label)}
                 className="text-green-500 bg-red-200 border-blue-500"
                 id={"label" + index}
               />

@@ -21,7 +21,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import { Task } from "@prisma/client";
 import DatePicker from "../DatePicker/DatePicker";
@@ -29,6 +29,12 @@ import { Textarea } from "../ui/textarea";
 import LabelPopover from "../LabelPopover/LabelPopover";
 import { editTask, addTask } from "./action";
 import DeleteTaskDialog from "../DeleteTaskDialog/DeleteTaskDialog";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { taskSchema } from "@/lib/zod/schema";
+import { z } from "zod";
+
+type TaskSchema = z.infer<typeof taskSchema>;
 
 function TaskExpandDialog({
   newTask = false,
@@ -42,34 +48,45 @@ function TaskExpandDialog({
   labels: string[];
 }) {
   const [open, setOpen] = useState(false);
-  const [taskData, setTaskData] = useState<Task>(data);
-  const [btnLoadingState, setBtnLoadingState] = useState(false);
 
-  useEffect(() => {
-    setTaskData(data);
-  }, [open]);
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    reset,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(taskSchema),
+    defaultValues: data,
+  });
+  const watchLabel = watch("labels");
 
-  const handleClickEdit = async () => {
+  const handleEditTask = async (formData: TaskSchema) => {
     try {
-      setBtnLoadingState(true);
-      await editTask(taskData, data);
-      setBtnLoadingState(false);
+      await editTask(formData, data);
       setOpen(false);
+      reset(formData);
     } catch (error) {
-      console.log(error);
-      setBtnLoadingState(false);
+      const strError = error instanceof Error ? error.message : "Server error";
+      setError("root", { type: "server", message: strError });
     }
   };
-  const handleClickAdd = async () => {
+
+  const handleAddTask = async (formData: TaskSchema) => {
     try {
-      setBtnLoadingState(true);
-      await addTask(taskData);
-      setBtnLoadingState(false);
+      await addTask(formData);
       setOpen(false);
+      reset();
     } catch (error) {
-      console.log(error);
-      setBtnLoadingState(false);
+      const strError = error instanceof Error ? error.message : "Server error";
+      setError("root", { type: "server", message: strError });
     }
+  };
+
+  const onSubmit = (formData: TaskSchema) => {
+    return newTask ? handleAddTask(formData) : handleEditTask(formData);
   };
 
   const iconClassName = "size-6! inline-block";
@@ -79,119 +96,147 @@ function TaskExpandDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{triggerChild}</DialogTrigger>
       <DialogContent className="md:min-w-3xl bg-popover text-popover-foreground">
-        <DialogHeader className="mt-4 gap-2">
-          <DialogTitle>
-            <Input
-              className="text-foreground"
-              placeholder="Title"
-              onChange={(e) =>
-                setTaskData({ ...taskData, title: e.target.value })
-              }
-              value={taskData.title}
-            />
-          </DialogTitle>
-          <DialogDescription className="line-clamp-2">
-            <Textarea
-              className="resize-none max-h-36"
-              placeholder="description"
-              onChange={(e) =>
-                setTaskData({ ...taskData, description: e.target.value })
-              }
-              value={taskData.description}
-            />
-          </DialogDescription>
-        </DialogHeader>
-        {/* Label Section */}
-        <div className="max-h-36 flex py-2 flex-wrap overflow-auto gap-1 items-center">
-          {taskData.labels.map((label, index) => (
-            <div
-              key={index}
-              className="border border-foreground rounded-full px-2 py-1 text-xs font-semibold line-clamp-3}"
-            >
-              {label}
-            </div>
-          ))}
-        </div>
-        {/* Bottom Section */}
-        <div className="flex items-center justify-between">
-          <DatePicker
-            setparentDate={setTaskData}
-            taskDate={taskData.date == null ? undefined : taskData.date}
-          />
-          <div>
-            {taskData.isImportant ? (
-              <button
-                onClick={() => setTaskData({ ...taskData, isImportant: false })}
-                className={BtnClassName}
-              >
-                <StarIcon className={`${iconClassName}`} />
-              </button>
-            ) : (
-              <button
-                onClick={() => setTaskData({ ...taskData, isImportant: true })}
-                className={BtnClassName}
-              >
-                <StarIconOutline className={iconClassName} />
-              </button>
-            )}
-            <LabelPopover
-              setparentLabels={setTaskData}
-              taskLabels={taskData.labels}
-              labels={labels}
-              trigger={
-                <button className={BtnClassName}>
-                  <TagIcon className={iconClassName} />
-                </button>
-              }
-            />
-            {newTask || (
-              <DeleteTaskDialog
-                triggerChild={
-                  <button className={BtnClassName}>
-                    <TrashIcon className={iconClassName} />
-                  </button>
-                }
-                taskId={taskData.id}
+        <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
+          <DialogHeader className="mt-4 gap-2">
+            <DialogTitle>
+              <Input
+                {...register("title")}
+                className="text-foreground"
+                placeholder="Title"
               />
-            )}
+              <p className="col-span-3 col-start-2 ml-2 mt-2 text-start text-base font-normal text-red-500 static">
+                {errors.title?.message}
+              </p>
+            </DialogTitle>
+            <DialogDescription className="line-clamp-2">
+              <Textarea
+                {...register("description")}
+                className="resize-none max-h-36"
+                placeholder="description"
+              />
+            </DialogDescription>
+            <p className="col-span-3 col-start-2 ml-2 text-start text-base font-normal text-red-500 static">
+              {errors.description?.message}
+            </p>
+            <p className="col-span-3 col-start-2 ml-2 text-start text-base font-normal text-red-500 static">
+              {errors.root?.message}
+            </p>
+          </DialogHeader>
+          {/* Label Section */}
+          <div className="max-h-36 flex py-2 flex-wrap overflow-auto gap-1 items-center">
+            {watchLabel.map((label, index) => (
+              <div
+                key={index}
+                className="border border-foreground rounded-full px-2 py-1 text-xs font-semibold line-clamp-3}"
+              >
+                {label}
+              </div>
+            ))}
           </div>
-        </div>
+          {/* Bottom Section */}
+          <div className="flex items-center justify-between">
+            <Controller
+              name="date"
+              control={control}
+              render={({ field }) => (
+                <DatePicker
+                  field={field}
+                  taskDate={data.date ? data.date : undefined}
+                />
+              )}
+            />
+            <div>
+              <Controller
+                name="isImportant"
+                control={control}
+                render={({ field }) => (
+                  <button
+                    type="button"
+                    onClick={() => field.onChange(!field.value)}
+                    className={BtnClassName}
+                  >
+                    {field.value ? (
+                      <StarIcon className={iconClassName} />
+                    ) : (
+                      <StarIconOutline className={iconClassName} />
+                    )}
+                  </button>
+                )}
+              />
+              <Controller
+                name="labels"
+                control={control}
+                render={({ field }) => (
+                  <LabelPopover
+                    field={field}
+                    labels={labels}
+                    trigger={
+                      <button className={BtnClassName}>
+                        <TagIcon className={iconClassName} />
+                      </button>
+                    }
+                  />
+                )}
+              />
 
-        <DialogFooter>
-          {taskData.isComplete ? (
-            <Button
-              className="bg-isComplete hover:bg-isComplete/90 text-isComplete-foreground"
-              onClick={() => setTaskData({ ...taskData, isComplete: false })}
-            >
-              Mark As Undone
-              <CheckCircleIcon className={`${iconClassName} text-green-300`} />
-            </Button>
-          ) : (
-            <Button
-              className="bg-isComplete hover:bg-isComplete/90 text-isComplete-foreground"
-              onClick={() => setTaskData({ ...taskData, isComplete: true })}
-            >
-              Mark As Done
-              <CheckCircleIconOutline className={iconClassName} />
-            </Button>
-          )}
+              {newTask || (
+                <DeleteTaskDialog
+                  triggerChild={
+                    <button className={BtnClassName}>
+                      <TrashIcon className={iconClassName} />
+                    </button>
+                  }
+                  taskId={data.id}
+                />
+              )}
+            </div>
+          </div>
 
-          <DialogClose asChild>
-            <Button disabled={btnLoadingState} variant={"destructive"}>
-              Cancel
-            </Button>
-          </DialogClose>
-          {btnLoadingState ? (
-            <Button disabled>
-              <LoaderCircle className="animate-spin" />
-              please wait...
-            </Button>
-          ) : (
-            <Button onClick={newTask ? handleClickAdd : handleClickEdit}>
-              Save
-            </Button>
-          )}
-        </DialogFooter>
+          <DialogFooter>
+            <Controller
+              name="isComplete"
+              control={control}
+              render={({ field }) => (
+                <Button
+                  type="button"
+                  onClick={() => field.onChange(!field.value)}
+                  className="bg-isComplete hover:bg-isComplete/90 text-isComplete-foreground"
+                >
+                  {field.value ? (
+                    <>
+                      Mark As Undone
+                      <CheckCircleIcon
+                        className={`${iconClassName} text-green-300`}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      Mark As Done
+                      <CheckCircleIconOutline className={iconClassName} />
+                    </>
+                  )}
+                </Button>
+              )}
+            />
+            <DialogClose asChild>
+              <Button
+                onClick={() => reset()}
+                disabled={isSubmitting}
+                variant={"destructive"}
+              >
+                Cancel
+              </Button>
+            </DialogClose>
+            {isSubmitting ? (
+              <Button disabled>
+                <LoaderCircle className="animate-spin" />
+                please wait...
+              </Button>
+            ) : (
+              <Button type="submit">Save</Button>
+            )}
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );
