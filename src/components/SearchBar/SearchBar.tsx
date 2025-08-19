@@ -12,6 +12,12 @@ function SearchBar({
   const [searchParameter, setSearchParameter] = useState("");
 
   useEffect(() => {
+    const searchHandler = () => {
+      if (searchParameter) {
+        setSearchParams(["Search", searchParameter]);
+      } else setSearchParams([" All Task ", ""]);
+    };
+
     const handler = setTimeout(() => {
       searchHandler();
     }, 1000);
@@ -19,13 +25,7 @@ function SearchBar({
     return () => {
       clearTimeout(handler);
     };
-  }, [searchParameter]);
-
-  const searchHandler = () => {
-    if (searchParameter) {
-      setSearchParams(["Search", searchParameter]);
-    } else setSearchParams([" All Task ", ""]);
-  };
+  }, [searchParameter, setSearchParams]);
 
   return (
     <section className={`relative flex-grow max-w-116 ${className}`}>
