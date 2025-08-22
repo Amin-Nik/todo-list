@@ -18,11 +18,9 @@ const taskSchema = z.object({
 });
 
 const userSchema = z.object({
-  id: z.string(),
-  userName: z.string().trim().min(1),
-  labels: z.array(z.string().trim()),
-  name: z.string().trim().min(1),
-  password: z.string().trim().min(1),
+  name: z.string().trim().min(1, "name can't be empty"),
+  userName: z.string().trim().min(1, "user name can't be empty"),
+  password: z.string().trim().min(1, "password can't be empty"),
 });
 
 const labelSchema = z.object({

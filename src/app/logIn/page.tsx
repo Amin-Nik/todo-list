@@ -1,7 +1,7 @@
-import LogInForm from "@/components/LogInForm/LogInForm";
+import LogInAndSignUpForm from "@/components/LogInAndSignUpForm/LogInAndSignUpForm";
 
 function page() {
-  return <LogInForm />;
+  return <LogInAndSignUpForm isSignUp={false} />;
 }
 
 export default page;
