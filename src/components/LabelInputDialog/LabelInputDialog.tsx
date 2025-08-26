@@ -2,7 +2,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -10,29 +9,31 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useState } from "react";
-import { LoaderCircle } from "lucide-react";
-import { editLabel } from "./action";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { labelSchema } from "@/lib/zod/schema";
 import { z } from "zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { LoaderCircle } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { labelSchema } from "@/lib/zod/schema";
+import { Button } from "@/components/ui/button";
+import { editLabel, newLabel } from "./action";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type LabelSchema = z.infer<typeof labelSchema>;
 
-function EditLabelDialog({
+function LabelInputDialog({
   triggerChild,
   labelData,
   currentLabel,
   setActiveBtn,
+  isNew,
 }: {
   triggerChild: React.ReactNode;
   labelData: string[];
   currentLabel: string;
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
+  isNew: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -49,10 +50,15 @@ function EditLabelDialog({
 
   const onSubmit = async (data: LabelSchema) => {
     try {
-      await editLabel(labelData, data.title, currentLabel);
+      if (isNew) {
+        await newLabel(labelData, data.title);
+        reset();
+      } else {
+        await editLabel(labelData, data.title, currentLabel);
+        setActiveBtn((e) => (e == currentLabel ? data.title : e));
+        reset(data);
+      }
       setOpen(false);
-      setActiveBtn((e) => (e == currentLabel ? data.title : e));
-      reset(data);
     } catch (error) {
       const strError = error instanceof Error ? error.message : "Server error";
       setError("title", { type: "server", message: strError });
@@ -64,8 +70,7 @@ function EditLabelDialog({
       <DialogTrigger asChild>{triggerChild}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit Label</DialogTitle>
-          <DialogDescription></DialogDescription>
+          <DialogTitle>{isNew ? "Add New Label" : "Edit Label"}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 py-4">
@@ -94,18 +99,21 @@ function EditLabelDialog({
                 Cancel
               </Button>
             </DialogClose>
-            {isSubmitting ? (
-              <Button disabled>
-                <LoaderCircle className="animate-spin" />
-                please wait...
-              </Button>
-            ) : (
-              <Button>Save</Button>
-            )}
+            <Button disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <LoaderCircle className="animate-spin" />
+                  please wait...
+                </>
+              ) : (
+                "Save"
+              )}
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
   );
 }
-export default EditLabelDialog;
+
+export default LabelInputDialog;

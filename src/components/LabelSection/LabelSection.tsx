@@ -1,9 +1,8 @@
 import { TrashIcon, PencilIcon, TagIcon } from "@heroicons/react/24/solid";
 import SideBtn from "../SideBtn/SideBtn";
-import NewLabelDialog from "../NewLabelDialog/NewLabelDialog";
 import { Button } from "../ui/button";
 import DeleteLabelDialog from "../DeleteLabelDialog/DeleteLabelDialog";
-import EditLabelDialog from "../EditLabelDialog/EditLabelDialog";
+import LabelInputDialog from "../LabelInputDialog/LabelInputDialog";
 
 function LabelSection({
   labelData,
@@ -20,7 +19,10 @@ function LabelSection({
 }) {
   return (
     <section>
-      <NewLabelDialog
+      <LabelInputDialog
+        isNew={true}
+        setActiveBtn={setActiveBtn}
+        currentLabel=""
         labelData={labelData}
         triggerChild={
           <Button
@@ -49,7 +51,8 @@ function LabelSection({
           text={label}
           editAndDeleteIcon={
             <div className="bg-sidebar-accent rounded-full transition transition-discrete absolute right-1 top-2.5 flex opacity-0 group-hover:opacity-100">
-              <EditLabelDialog
+              <LabelInputDialog
+                isNew={false}
                 setActiveBtn={setActiveBtn}
                 currentLabel={label}
                 labelData={labelData}
