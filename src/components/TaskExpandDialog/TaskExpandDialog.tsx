@@ -26,7 +26,7 @@ import { LoaderCircle } from "lucide-react";
 import { Task } from "@prisma/client";
 import DatePicker from "../DatePicker/DatePicker";
 import { Textarea } from "../ui/textarea";
-import LabelPopover from "../LabelPopover/LabelPopover";
+import TaskLabelSelectList from "../TaskLabelSelectList/TaskLabelSelectList";
 import { editTask, addTask } from "./action";
 import DeleteTaskDialog from "../DeleteTaskDialog/DeleteTaskDialog";
 import { Controller, useForm } from "react-hook-form";
@@ -157,7 +157,7 @@ function TaskExpandDialog({
                 name="labels"
                 control={control}
                 render={({ field }) => (
-                  <LabelPopover
+                  <TaskLabelSelectList
                     field={field}
                     labels={labels}
                     trigger={

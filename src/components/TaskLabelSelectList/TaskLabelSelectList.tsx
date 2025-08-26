@@ -7,7 +7,7 @@ import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import { ControllerRenderProps } from "react-hook-form";
 
-function LabelPopover({
+function TaskLabelSelectList({
   trigger,
   labels,
   field,
@@ -60,4 +60,4 @@ function LabelPopover({
   );
 }
 
-export default LabelPopover;
+export default TaskLabelSelectList;
