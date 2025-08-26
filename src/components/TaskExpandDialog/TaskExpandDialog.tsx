@@ -37,12 +37,12 @@ import { z } from "zod";
 type TaskSchema = z.infer<typeof taskSchema>;
 
 function TaskExpandDialog({
-  newTask = false,
+  newTask,
   triggerChild,
   data,
   labels,
 }: {
-  newTask?: boolean;
+  newTask: boolean;
   triggerChild: React.ReactNode;
   data: Task;
   labels: string[];
@@ -63,30 +63,20 @@ function TaskExpandDialog({
   });
   const watchLabel = watch("labels");
 
-  const handleEditTask = async (formData: TaskSchema) => {
+  const onSubmit = async (formData: TaskSchema) => {
     try {
-      await editTask(formData, data);
+      if (newTask) {
+        await addTask(formData);
+        reset();
+      } else {
+        await editTask(formData, data);
+        reset(formData);
+      }
       setOpen(false);
-      reset(formData);
     } catch (error) {
       const strError = error instanceof Error ? error.message : "Server error";
       setError("root", { type: "server", message: strError });
     }
-  };
-
-  const handleAddTask = async (formData: TaskSchema) => {
-    try {
-      await addTask(formData);
-      setOpen(false);
-      reset();
-    } catch (error) {
-      const strError = error instanceof Error ? error.message : "Server error";
-      setError("root", { type: "server", message: strError });
-    }
-  };
-
-  const onSubmit = (formData: TaskSchema) => {
-    return newTask ? handleAddTask(formData) : handleEditTask(formData);
   };
 
   const iconClassName = "size-6! inline-block";
