@@ -18,8 +18,16 @@ const taskSchema = z.object({
 });
 
 const userSchema = z.object({
-  name: z.string().trim().min(1, "name can't be empty"),
-  userName: z.string().trim().min(1, "user name can't be empty"),
+  name: z
+    .string()
+    .trim()
+    .min(1, "name can't be empty")
+    .max(20, "Too big, please keep it under 20 character"),
+  userName: z
+    .string()
+    .trim()
+    .min(1, "user name can't be empty")
+    .max(20, "Too big, please keep it under 20 character"),
   password: z.string().trim().min(1, "password can't be empty"),
 });
 

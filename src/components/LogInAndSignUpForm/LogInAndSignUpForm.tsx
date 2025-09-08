@@ -36,9 +36,18 @@ function LogInAndSignUpForm({ isSignUp }: { isSignUp: boolean }) {
     try {
       return isSignUp ? await signUp(data) : await logIn(data);
     } catch (error) {
-      const strError = error instanceof Error ? error.message : "Server error";
-      if (strError !== "NEXT_REDIRECT")
-        setError("root", { type: "server", message: strError });
+      if (error instanceof Error) {
+        if (error.message == "NEXT_REDIRECT") return;
+
+        if (error.cause == "server error")
+          setError("root", { type: "server", message: error.message });
+        else {
+          setError("root", {
+            type: "server",
+            message: "something went wrong!",
+          });
+        }
+      }
     }
   };
 

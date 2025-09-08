@@ -74,8 +74,16 @@ function TaskExpandDialog({
       }
       setOpen(false);
     } catch (error) {
-      const strError = error instanceof Error ? error.message : "Server error";
-      setError("root", { type: "server", message: strError });
+      if (error instanceof Error) {
+        if (error.cause == "server error")
+          setError("root", { type: "server", message: error.message });
+        else {
+          setError("root", {
+            type: "server",
+            message: "something went wrong!",
+          });
+        }
+      }
     }
   };
 

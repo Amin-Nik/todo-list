@@ -7,8 +7,9 @@ export async function newLabel(labelData: string[], newLabel: string) {
   const userId = await verifySession();
 
   if (labelData.includes(newLabel))
-    throw new Error("this label is already exist!");
-  if (!newLabel.trim()) throw new Error("label can't be empty");
+    throw new Error("this label is already exist!", { cause: "server error" });
+  if (!newLabel.trim())
+    throw new Error("label can't be empty", { cause: "server error" });
 
   const label = await prisma.user.update({
     where: {
@@ -30,10 +31,12 @@ export async function editLabel(
 ) {
   const userId = await verifySession();
 
-  if (newLabel == currentLabel) throw new Error("it's the same label!");
+  if (newLabel == currentLabel)
+    throw new Error("it's the same label!", { cause: "server error" });
   if (labelData.includes(newLabel))
-    throw new Error("this label is already exist!");
-  if (!newLabel.trim()) throw new Error("label can't be empty");
+    throw new Error("this label is already exist!", { cause: "server error" });
+  if (!newLabel.trim())
+    throw new Error("label can't be empty", { cause: "server error" });
 
   const tasks = await prisma.task.findMany({
     where: { userId },

@@ -10,8 +10,10 @@ export async function logIn({
   userName: string;
   password: string;
 }) {
-  if (!userName.trim()) throw new Error("user name can't be empty");
-  if (!password.trim()) throw new Error("password can't be empty");
+  if (!userName.trim())
+    throw new Error("user name can't be empty", { cause: "server error" });
+  if (!password.trim())
+    throw new Error("password can't be empty", { cause: "server error" });
 
   const user = await prisma.user.findUnique({
     where: { userName: userName.toLowerCase() },
@@ -20,8 +22,8 @@ export async function logIn({
   if (user?.id) {
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (isPasswordCorrect) await createSession(user.id);
-    else throw new Error("password is wrong");
-  } else throw new Error("user name does not exist");
+    else throw new Error("password is wrong", { cause: "server error" });
+  } else throw new Error("user name does not exist", { cause: "server error" });
 }
 
 export async function signUp({
@@ -33,9 +35,12 @@ export async function signUp({
   userName: string;
   password: string;
 }) {
-  if (!name?.trim()) throw new Error("name can't be empty");
-  if (!userName.trim()) throw new Error("user name can't be empty");
-  if (!password.trim()) throw new Error("password can't be empty");
+  if (!name?.trim())
+    throw new Error("name can't be empty", { cause: "server error" });
+  if (!userName.trim())
+    throw new Error("user name can't be empty", { cause: "server error" });
+  if (!password.trim())
+    throw new Error("password can't be empty", { cause: "server error" });
 
   const user = await prisma.user.findUnique({
     where: { userName: userName.toLowerCase() },
@@ -54,6 +59,7 @@ export async function signUp({
     await createSession(newUser.id);
   } else
     throw new Error(
-      "user name is taken; please try again with another user name"
+      "user name is taken; please try again with another user name",
+      { cause: "server error" }
     );
 }
