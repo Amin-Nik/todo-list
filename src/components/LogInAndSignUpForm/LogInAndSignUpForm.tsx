@@ -120,7 +120,7 @@ function LogInAndSignUpForm({ isSignUp }: { isSignUp: boolean }) {
           </Link>
         </p>
       </form>
-      <CardPostal />
+      {window.innerWidth >= 768 && <CardPostal />}
     </section>
   );
 }

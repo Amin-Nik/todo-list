@@ -1,8 +1,0 @@
-.glass-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  perspective: 1000px;
-  background-color: transparent;
-}

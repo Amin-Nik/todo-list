@@ -1,6 +1,5 @@
 "use client";
 import { useRef, useEffect } from "react";
-import "./CardPostal.css";
 import Image from "next/image";
 
 const CardPostal: React.FC = () => {
@@ -41,12 +40,13 @@ const CardPostal: React.FC = () => {
 
   return (
     <Image
-      className="rounded-3xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)]"
+      className="rounded-3xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] w-auto h-auto"
       alt="signup"
       src={"/signup.png"}
       width={350}
       height={350}
       ref={cardRef}
+      priority
     />
   );
 };
