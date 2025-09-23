@@ -31,7 +31,7 @@ function SideBtn({
         {icon}
         {toggleSideBar && (
           <>
-            <span className="w-3/5 truncate">{text.trim()}</span>
+            <span className="w-3/5 truncate">{text}</span>
             {activeBtn == text && (
               <Label className="flex justify-center items-center rounded-full p-1.5 bg-sidebar-foreground text-sidebar-accent-foreground ">
                 {taskCount}

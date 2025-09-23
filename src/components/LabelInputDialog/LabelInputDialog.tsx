@@ -61,14 +61,7 @@ function LabelInputDialog({
       setOpen(false);
     } catch (error) {
       if (error instanceof Error) {
-        if (error.cause == "server error")
-          setError("title", { type: "server", message: error.message });
-        else {
-          setError("title", {
-            type: "server",
-            message: "something went wrong!",
-          });
-        }
+        setError("title", { type: "server", message: error.message });
       }
     }
   };

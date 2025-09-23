@@ -75,14 +75,7 @@ function TaskExpandDialog({
       setOpen(false);
     } catch (error) {
       if (error instanceof Error) {
-        if (error.cause == "server error")
-          setError("root", { type: "server", message: error.message });
-        else {
-          setError("root", {
-            type: "server",
-            message: "something went wrong!",
-          });
-        }
+        setError("root", { type: "server", message: error.message });
       }
     }
   };
