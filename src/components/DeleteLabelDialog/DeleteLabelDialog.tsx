@@ -28,6 +28,7 @@ function DeleteLabelDialog({
 }) {
   const [btnLoadingState, setBtnLoadingState] = useState(false);
   const [open, setOpen] = useState(false);
+  const [err, setErr] = useState("");
 
   const deleteHandler = async () => {
     try {
@@ -36,8 +37,8 @@ function DeleteLabelDialog({
       setBtnLoadingState(false);
       setOpen(false);
       setActiveBtn((e) => (e == currentLabel ? " All Task " : e));
-    } catch (error) {
-      console.log(error);
+    } catch {
+      setErr("something went wrong!");
       setBtnLoadingState(false);
     }
   };
@@ -57,6 +58,9 @@ function DeleteLabelDialog({
           {`you are about to delete this label: ${currentLabel}`}
         </Label>
         <DialogFooter>
+          <p className="ml-2 text-center text-base font-normal text-red-500 static">
+            {err}
+          </p>
           <DialogClose asChild>
             <Button disabled={btnLoadingState}>Cancel</Button>
           </DialogClose>
