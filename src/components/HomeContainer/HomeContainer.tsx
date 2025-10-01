@@ -33,7 +33,7 @@ function HomeContainer({ tasks, user }: { tasks: Task[]; user: User }) {
 
   return (
     <>
-      <header className="bg-header sm:backdrop-blur-xs backdrop-blur-3xl text-header-foreground sticky top-0 w-full h-14 flex items-center justify-between gap-5 pl-19 py-2">
+      <header className="bg-header z-10 sm:backdrop-blur-xs backdrop-blur-3xl text-header-foreground sticky top-0 w-full h-14 flex items-center justify-between gap-5 pl-19 py-2">
         <SearchBar
           className="hidden sm:block"
           setSearchParams={setSearchParams}

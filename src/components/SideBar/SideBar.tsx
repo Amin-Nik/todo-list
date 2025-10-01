@@ -31,7 +31,7 @@ function SideBar({
     <>
       <Button
         onClick={() => setToggleSideBar(!toggleSideBar)}
-        className="size-11 fixed left-4 top-2 text-header-foreground hover:bg-sidebar-accent rounded-full bg-transparent transition transition-discrete"
+        className="size-11 fixed left-4 top-2 z-20 text-header-foreground hover:bg-sidebar-accent rounded-full bg-transparent transition transition-discrete"
       >
         <Bars3Icon className="size-6" />
       </Button>

@@ -18,7 +18,7 @@ function DatePicker({
 }: {
   taskDate?: Date;
   isDisabled?: boolean;
-  field: ControllerRenderProps<
+  field?: ControllerRenderProps<
     {
       id: string;
       date: unknown;
@@ -63,18 +63,9 @@ function DatePicker({
           selected={date}
           onSelect={(e) => {
             setDate(e);
-            field.onChange(e ? e : null);
+            field?.onChange(e ? e : null);
             setOpen(false);
           }}
-          // onSelect={(e) => {
-          //   setDate(e);
-          //   if (setparentDate)
-          //     setparentDate((task) => ({
-          //       ...task,
-          //       date: e == undefined ? null : e,
-          //     }));
-          //   setOpen(false);
-          // }}
         />
       </PopoverContent>
     </Popover>

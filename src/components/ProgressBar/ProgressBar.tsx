@@ -12,10 +12,6 @@ function ProgressBar({
   const [tasksLengths, setTasksLengths] = useState([0, 0]);
 
   useEffect(() => {
-    calculateCompletenessOfTasks();
-  }, [tasks]);
-
-  const calculateCompletenessOfTasks = () => {
     const AllTaskLength = tasks?.length || 0;
     const completedTaskLength =
       tasks?.filter((task) => task.isComplete).length || 0;
@@ -24,7 +20,7 @@ function ProgressBar({
     const reverseCompleteness = 100 - completeness;
     setTasksLengths([AllTaskLength, completedTaskLength]);
     setProgress(reverseCompleteness);
-  };
+  }, [tasks]);
 
   return (
     <section className={`w-80 ${className}`}>

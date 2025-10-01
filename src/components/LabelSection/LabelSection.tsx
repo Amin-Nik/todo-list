@@ -50,7 +50,11 @@ function LabelSection({
           icon={<TagIcon className="size-6! inline-block" />}
           text={label}
           editAndDeleteIcon={
-            <div className="bg-sidebar-accent rounded-full transition transition-discrete absolute right-1 top-2.5 flex opacity-0 group-hover:opacity-100">
+            <div
+              className={`${
+                activeBtn == label ? "bg-background" : "bg-sidebar-accent"
+              } lg:bg-sidebar-accent rounded-full transition transition-discrete absolute right-1 top-2.5 flex opacity-100 lg:opacity-0 group-hover:opacity-100`}
+            >
               <LabelInputDialog
                 isNew={false}
                 setActiveBtn={setActiveBtn}

@@ -17,6 +17,7 @@ function TaskCard({ data, labels }: { data: Task; labels: string[] }) {
     <>
       {data && (
         <TaskExpandDialog
+          newTask={false}
           labels={labels}
           data={data}
           triggerChild={
