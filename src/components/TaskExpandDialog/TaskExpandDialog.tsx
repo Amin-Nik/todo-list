@@ -21,7 +21,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import { Task } from "@prisma/client";
 import DatePicker from "../DatePicker/DatePicker";
@@ -39,12 +39,12 @@ type TaskSchema = z.infer<typeof taskSchema>;
 function TaskExpandDialog({
   newTask,
   triggerChild,
-  data,
+  taskData,
   labels,
 }: {
   newTask: boolean;
   triggerChild: React.ReactNode;
-  data: Task;
+  taskData: Task;
   labels: string[];
 }) {
   const [open, setOpen] = useState(false);
@@ -59,9 +59,13 @@ function TaskExpandDialog({
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(taskSchema),
-    defaultValues: data,
+    defaultValues: taskData,
   });
   const watchLabel = watch("labels");
+
+  useEffect(() => {
+    reset(taskData);
+  }, [reset, taskData]);
 
   const onSubmit = async (formData: TaskSchema) => {
     try {
@@ -69,7 +73,7 @@ function TaskExpandDialog({
         await addTask(formData);
         reset();
       } else {
-        await editTask(formData, data);
+        await editTask(formData, taskData);
         reset(formData);
       }
       setOpen(false);
@@ -132,7 +136,7 @@ function TaskExpandDialog({
               render={({ field }) => (
                 <DatePicker
                   field={field}
-                  taskDate={data.date ? data.date : undefined}
+                  taskDate={(field.value as Date) ?? undefined}
                 />
               )}
             />
@@ -177,7 +181,7 @@ function TaskExpandDialog({
                       <TrashIcon className={iconClassName} />
                     </button>
                   }
-                  taskId={data.id}
+                  taskId={taskData.id}
                 />
               )}
             </div>
