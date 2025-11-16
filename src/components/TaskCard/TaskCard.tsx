@@ -19,7 +19,7 @@ function TaskCard({ data, labels }: { data: Task; labels: string[] }) {
         <TaskExpandDialog
           newTask={false}
           labels={labels}
-          data={data}
+          taskData={data}
           triggerChild={
             <Card className="cursor-pointer bg-card text-card-foreground h-44 w-60 min-w-60 justify-evenly gap-0 py-0 border-ring inset-shadow-sm">
               <CardHeader className="mt-0.5 gap-2 px-4 bg-inherit">

@@ -7,7 +7,7 @@ function filterTasks(
 ) {
   let filteredTask = tasks;
   switch (activeBtn) {
-    case "Search":
+    case " Search ":
       filteredTask = filter.filterBySearchInput(tasks, searchParams[1]);
       break;
     case " All Task ":

@@ -25,7 +25,7 @@ function Tasks({
   };
 
   switch (activeBtn) {
-    case "Search":
+    case " Search ":
       break;
     case " All Task ":
       break;

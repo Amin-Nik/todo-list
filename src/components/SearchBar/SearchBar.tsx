@@ -14,7 +14,7 @@ function SearchBar({
   useEffect(() => {
     const searchHandler = () => {
       if (searchParameter) {
-        setSearchParams(["Search", searchParameter]);
+        setSearchParams([" Search ", searchParameter]);
       } else setSearchParams([" All Task ", ""]);
     };
 
