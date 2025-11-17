@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  date        DateTime?
+  description String
+  isComplete  Boolean
+  isImportant Boolean
+  labels      String[]
+  title       String
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String   @db.ObjectId
+}
+
+model User {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  userName String   @unique
+  labels   String[]
+  name     String
+  password String
+  task     Task[]
+}
