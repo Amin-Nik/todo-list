@@ -11,11 +11,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "@/lib/zod/schema";
 import { z } from "zod";
+import { useEffect } from "react";
 
 const loginSchema = userSchema.omit({ name: true });
 
 function LogInAndSignUpForm({ isSignUp }: { isSignUp: boolean }) {
-  document.body.className = "default";
+  useEffect(() => {
+    document.body.className = "default";
+  }, []);
 
   type UserSchema = z.infer<typeof userSchema>;
   type LoginSchema = z.infer<typeof loginSchema>;
@@ -113,7 +116,7 @@ function LogInAndSignUpForm({ isSignUp }: { isSignUp: boolean }) {
           </Link>
         </p>
       </form>
-      {window.innerWidth >= 768 && <CardPostal />}
+      <CardPostal />
     </section>
   );
 }

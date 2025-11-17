@@ -1,9 +1,15 @@
 "use client";
-import { useRef, useEffect } from "react";
+
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 
 const CardPostal: React.FC = () => {
   const cardRef = useRef<HTMLImageElement | null>(null);
+  const [isWide, setIsWide] = useState(false);
+
+  useEffect(() => {
+    setIsWide(window.innerWidth >= 768);
+  }, []);
 
   useEffect(() => {
     const card = cardRef.current;
@@ -39,15 +45,19 @@ const CardPostal: React.FC = () => {
   }, []);
 
   return (
-    <Image
-      className="rounded-3xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] w-auto h-auto"
-      alt="signup"
-      src={"/signup.png"}
-      width={350}
-      height={350}
-      ref={cardRef}
-      priority
-    />
+    <>
+      {isWide && (
+        <Image
+          className="rounded-3xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] w-auto h-auto"
+          alt="signup"
+          src={"/signup.png"}
+          width={350}
+          height={350}
+          ref={cardRef}
+          priority
+        />
+      )}
+    </>
   );
 };
 
