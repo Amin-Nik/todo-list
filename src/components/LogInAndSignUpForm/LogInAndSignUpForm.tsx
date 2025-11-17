@@ -11,11 +11,17 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "@/lib/zod/schema";
 import { z } from "zod";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const loginSchema = userSchema.omit({ name: true });
 
 function LogInAndSignUpForm({ isSignUp }: { isSignUp: boolean }) {
+  const [isWide, setIsWide] = useState(false);
+
+  useEffect(() => {
+    setIsWide(window.innerWidth >= 768);
+  }, []);
+
   useEffect(() => {
     document.body.className = "default";
   }, []);
@@ -116,7 +122,7 @@ function LogInAndSignUpForm({ isSignUp }: { isSignUp: boolean }) {
           </Link>
         </p>
       </form>
-      <CardPostal />
+      {isWide && <CardPostal />}
     </section>
   );
 }
