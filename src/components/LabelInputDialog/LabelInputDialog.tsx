@@ -69,7 +69,7 @@ function LabelInputDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{triggerChild}</DialogTrigger>
-      <DialogContent>
+      <DialogContent aria-describedby="">
         <DialogHeader>
           <DialogTitle>{isNew ? "Add New Label" : "Edit Label"}</DialogTitle>
         </DialogHeader>

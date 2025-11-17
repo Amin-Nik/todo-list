@@ -42,7 +42,7 @@ function LogOutButton({ nameOfTheUser }: { nameOfTheUser: string }) {
             logOutBtn && "translate-y-5"
           } px-1 max-w-full max-h-full truncate group-hover:translate-y-5 transition-all duration-300`}
         >
-          hi {nameOfTheUser}
+          Hi {nameOfTheUser}
         </span>
         <span
           onClick={spanHandleClick}
