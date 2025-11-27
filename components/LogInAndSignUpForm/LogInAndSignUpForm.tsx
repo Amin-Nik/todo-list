@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "../../lib/zod/schema";
 import { z } from "zod";
 import { useEffect, useState } from "react";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 
 const loginSchema = userSchema.omit({ name: true });
 
@@ -47,8 +48,10 @@ function LogInAndSignUpForm({ isSignUp }: { isSignUp: boolean }) {
       if (result.error)
         setError("root", { type: "server", message: result.error });
     } catch (error) {
-      console.log(error);
-      setError("root", { type: "server", message: "something went wrong!" });
+      if (!isRedirectError(error)) {
+        console.log(error);
+        setError("root", { type: "server", message: "something went wrong!" });
+      }
     }
   };
 
