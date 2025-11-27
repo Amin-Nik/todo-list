@@ -70,6 +70,7 @@ function LabelInputDialog({
       }
     } catch (error) {
       console.log(error);
+      setError("title", { type: "server", message: "something went wrong!" });
     }
   };
 

@@ -48,6 +48,7 @@ function LogInAndSignUpForm({ isSignUp }: { isSignUp: boolean }) {
         setError("root", { type: "server", message: result.error });
     } catch (error) {
       console.log(error);
+      setError("root", { type: "server", message: "something went wrong!" });
     }
   };
 

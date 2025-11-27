@@ -88,6 +88,7 @@ function TaskExpandDialog({
       }
     } catch (error) {
       console.log(error);
+      setError("root", { type: "server", message: "something went wrong!" });
     }
   };
 
