@@ -2,7 +2,7 @@
 
 ### ![ScreenShot](public/TodoList-Screenshot.png) A simple full-stack Todo List app built with Next.js and TypeScript
 
-## **[Click to See Live Demo](https://todo-list-amin-niks-projects.vercel.app/)**
+## **[Click to See Live Demo](https://todo-list-five-theta-20.vercel.app/)**
 
 ### Technologies and Features:
 
@@ -15,7 +15,7 @@
 
 ## Environment Variables:
 
-### To run this project, you will need to add the following environment variables to your .env file
+To run this project, you will need to add the following environment variables to your .env file
 
 `DATABASE_URL`
 
