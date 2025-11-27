@@ -14,7 +14,7 @@ export async function newLabel(labelData: string[], newLabel: string) {
     if (!newLabel.trim())
       throw new Error("label can't be empty", { cause: "server error" });
 
-    const label = await prisma.user.update({
+    await prisma.user.update({
       where: {
         id: userId,
       },
@@ -24,11 +24,13 @@ export async function newLabel(labelData: string[], newLabel: string) {
     });
 
     revalidateTag("");
-    return label;
+    return { success: true };
   } catch (error) {
-    if (error instanceof Error) {
-      if (error.cause == "server error") throw new Error(error.message);
-      else throw new Error("something went wrong!");
+    if (error instanceof Error && error.cause == "server error")
+      return { error: error.message };
+    else {
+      console.log(error);
+      return { error: "something went wrong!" };
     }
   }
 }
@@ -73,7 +75,7 @@ export async function editLabel(
     const index = labelData.indexOf(currentLabel);
     labelData.splice(index, 1, newLabel.trim());
 
-    const label = await prisma.user.update({
+    await prisma.user.update({
       where: {
         id: userId,
       },
@@ -86,11 +88,13 @@ export async function editLabel(
     });
 
     revalidateTag("");
-    return label.labels[index];
+    return { success: true };
   } catch (error) {
-    if (error instanceof Error) {
-      if (error.cause == "server error") throw new Error(error.message);
-      else throw new Error("something went wrong!");
+    if (error instanceof Error && error.cause == "server error")
+      return { error: error.message };
+    else {
+      console.log(error);
+      return { error: "something went wrong!" };
     }
   }
 }

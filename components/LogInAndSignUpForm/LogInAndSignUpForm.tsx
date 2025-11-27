@@ -43,13 +43,11 @@ function LogInAndSignUpForm({ isSignUp }: { isSignUp: boolean }) {
 
   const onSubmit = async (data: FormSchema) => {
     try {
-      return isSignUp ? await signUp(data) : await logIn(data);
+      const result = isSignUp ? await signUp(data) : await logIn(data);
+      if (result.error)
+        setError("root", { type: "server", message: result.error });
     } catch (error) {
-      if (error instanceof Error) {
-        if (error.message == "NEXT_REDIRECT") return;
-
-        setError("root", { type: "server", message: error.message });
-      }
+      console.log(error);
     }
   };
 

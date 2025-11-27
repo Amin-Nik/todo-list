@@ -27,11 +27,14 @@ export async function logIn({
       else throw new Error("password is wrong", { cause: "server error" });
     } else
       throw new Error("user name does not exist", { cause: "server error" });
+    return { success: true };
   } catch (error) {
-    if (error instanceof Error) {
-      if (isRedirectError(error)) throw error;
-      if (error.cause == "server error") throw new Error(error.message);
-      else throw new Error("something went wrong!");
+    if (isRedirectError(error)) throw error;
+    if (error instanceof Error && error.cause == "server error")
+      return { error: error.message };
+    else {
+      console.log(error);
+      return { error: "something went wrong!" };
     }
   }
 }
@@ -67,16 +70,19 @@ export async function signUp({
         },
       });
       await createSession(newUser.id);
+      return { success: true };
     } else
       throw new Error(
         "user name is taken; please try again with another user name",
         { cause: "server error" }
       );
   } catch (error) {
-    if (error instanceof Error) {
-      if (isRedirectError(error)) throw error;
-      if (error.cause == "server error") throw new Error(error.message);
-      else throw new Error("something went wrong!");
+    if (isRedirectError(error)) throw error;
+    if (error instanceof Error && error.cause == "server error")
+      return { error: error.message };
+    else {
+      console.log(error);
+      return { error: "something went wrong!" };
     }
   }
 }

@@ -12,20 +12,24 @@ export async function editTask(data: Task, oldData: Task) {
         cause: "server error",
       });
     if (JSON.stringify(data) == JSON.stringify(oldData))
-      throw new Error("you didn't change anything!");
+      throw new Error("you didn't change anything!", {
+        cause: "server error",
+      });
     const { id, ...theData } = data;
-    const task = await prisma.task.update({
+    await prisma.task.update({
       where: {
         id: id,
       },
       data: theData,
     });
     revalidateTag("");
-    return task;
+    return { success: true };
   } catch (error) {
-    if (error instanceof Error) {
-      if (error.cause == "server error") throw new Error(error.message);
-      else throw new Error("something went wrong!");
+    if (error instanceof Error && error.cause == "server error")
+      return { error: error.message };
+    else {
+      console.log(error);
+      return { error: "something went wrong!" };
     }
   }
 }
@@ -39,15 +43,17 @@ export async function addTask(data: Task) {
       });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, ...theData } = data;
-    const newTask = await prisma.task.create({
+    await prisma.task.create({
       data: { ...theData, userId },
     });
     revalidateTag("");
-    return newTask;
+    return { success: true };
   } catch (error) {
-    if (error instanceof Error) {
-      if (error.cause == "server error") throw new Error(error.message);
-      else throw new Error("something went wrong!");
+    if (error instanceof Error && error.cause == "server error")
+      return { error: error.message };
+    else {
+      console.log(error);
+      return { error: "something went wrong!" };
     }
   }
 }

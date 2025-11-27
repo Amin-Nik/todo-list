@@ -51,23 +51,36 @@ function LabelInputDialog({
   const onSubmit = async (data: LabelSchema) => {
     try {
       if (isNew) {
-        await newLabel(labelData, data.title);
-        reset();
+        const result = await newLabel(labelData, data.title);
+        if (result.error)
+          setError("title", { type: "server", message: result.error });
+        else {
+          reset();
+          setOpen(false);
+        }
       } else {
-        await editLabel(labelData, data.title, currentLabel);
-        setActiveBtn((e) => (e == currentLabel ? data.title : e));
-        reset(data);
+        const result = await editLabel(labelData, data.title, currentLabel);
+        if (result.error)
+          setError("title", { type: "server", message: result.error });
+        else {
+          setActiveBtn((e) => (e == currentLabel ? data.title : e));
+          reset(data);
+          setOpen(false);
+        }
       }
-      setOpen(false);
     } catch (error) {
-      if (error instanceof Error) {
-        setError("title", { type: "server", message: error.message });
-      }
+      console.log(error);
     }
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(e) => {
+        setOpen(e);
+        reset();
+      }}
+    >
       <DialogTrigger asChild>{triggerChild}</DialogTrigger>
       <DialogContent aria-describedby="">
         <DialogHeader>
@@ -92,11 +105,7 @@ function LabelInputDialog({
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button
-                disabled={isSubmitting}
-                onClick={() => reset()}
-                variant={"destructive"}
-              >
+              <Button disabled={isSubmitting} variant={"destructive"}>
                 Cancel
               </Button>
             </DialogClose>

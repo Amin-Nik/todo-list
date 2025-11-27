@@ -33,8 +33,12 @@ const filter = {
   filterBySearchInput: function (tasks: Task[], searchParameter: string) {
     const filteredTask = tasks.filter(
       (tsk) =>
-        tsk.title.includes(searchParameter) ||
-        tsk.description.includes(searchParameter)
+        tsk.title
+          .toLocaleLowerCase()
+          .includes(searchParameter.toLocaleLowerCase()) ||
+        tsk.description
+          .toLocaleLowerCase()
+          .includes(searchParameter.toLocaleLowerCase())
     );
     return filteredTask || [];
   },

@@ -70,17 +70,24 @@ function TaskExpandDialog({
   const onSubmit = async (formData: TaskSchema) => {
     try {
       if (newTask) {
-        await addTask(formData);
-        reset();
+        const result = await addTask(formData);
+        if (result.error)
+          setError("root", { type: "server", message: result.error });
+        else {
+          reset();
+          setOpen(false);
+        }
       } else {
-        await editTask(formData, taskData);
-        reset(formData);
+        const result = await editTask(formData, taskData);
+        if (result.error)
+          setError("root", { type: "server", message: result.error });
+        else {
+          reset();
+          setOpen(false);
+        }
       }
-      setOpen(false);
     } catch (error) {
-      if (error instanceof Error) {
-        setError("root", { type: "server", message: error.message });
-      }
+      console.log(error);
     }
   };
 
@@ -88,7 +95,13 @@ function TaskExpandDialog({
   const BtnClassName = "cursor-pointer rounded-full p-1.5 hover:bg-accent";
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(e) => {
+        setOpen(e);
+        reset();
+      }}
+    >
       <DialogTrigger asChild>{triggerChild}</DialogTrigger>
       <DialogContent className="md:min-w-3xl bg-popover text-popover-foreground">
         <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
@@ -214,11 +227,7 @@ function TaskExpandDialog({
               )}
             />
             <DialogClose asChild>
-              <Button
-                onClick={() => reset()}
-                disabled={isSubmitting}
-                variant={"destructive"}
-              >
+              <Button disabled={isSubmitting} variant={"destructive"}>
                 Cancel
               </Button>
             </DialogClose>
