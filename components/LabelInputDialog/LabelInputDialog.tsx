@@ -19,6 +19,7 @@ import { labelSchema } from "../../lib/zod/schema";
 import { Button } from "../ui/button";
 import { editLabel, newLabel } from "./action";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 
 type LabelSchema = z.infer<typeof labelSchema>;
 
@@ -35,6 +36,7 @@ function LabelInputDialog({
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
   isNew: boolean;
 }) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
 
   const {
@@ -68,6 +70,7 @@ function LabelInputDialog({
           setOpen(false);
         }
       }
+      router.refresh();
     } catch (error) {
       console.log(error);
       setError("title", { type: "server", message: "something went wrong!" });

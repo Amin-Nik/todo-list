@@ -14,6 +14,7 @@ import { Label } from "../ui/label";
 import { AlertCircle, LoaderCircle } from "lucide-react";
 import { useState } from "react";
 import { deleteLabel } from "./action";
+import { useRouter } from "next/navigation";
 
 function DeleteLabelDialog({
   triggerChild,
@@ -26,6 +27,7 @@ function DeleteLabelDialog({
   currentLabel: string;
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
 }) {
+  const router = useRouter();
   const [btnLoadingState, setBtnLoadingState] = useState(false);
   const [open, setOpen] = useState(false);
   const [err, setErr] = useState("");
@@ -37,6 +39,7 @@ function DeleteLabelDialog({
       setBtnLoadingState(false);
       setOpen(false);
       setActiveBtn((e) => (e == currentLabel ? " All Task " : e));
+      router.refresh();
     } catch {
       setErr("something went wrong!");
       setBtnLoadingState(false);

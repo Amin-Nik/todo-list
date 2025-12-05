@@ -33,6 +33,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { taskSchema } from "../../lib/zod/schema";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 type TaskSchema = z.infer<typeof taskSchema>;
 
@@ -47,8 +48,8 @@ function TaskExpandDialog({
   taskData: Task;
   labels: string[];
 }) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -86,6 +87,7 @@ function TaskExpandDialog({
           setOpen(false);
         }
       }
+      router.refresh();
     } catch (error) {
       console.log(error);
       setError("root", { type: "server", message: "something went wrong!" });

@@ -1,7 +1,6 @@
 "use server";
 import { prisma } from "../../lib/prisma";
 import { verifySession } from "../../lib/session";
-import { revalidateTag } from "next/cache";
 
 export async function newLabel(labelData: string[], newLabel: string) {
   const userId = await verifySession();
@@ -23,7 +22,6 @@ export async function newLabel(labelData: string[], newLabel: string) {
       },
     });
 
-    revalidateTag("");
     return { success: true };
   } catch (error) {
     if (error instanceof Error && error.cause == "server error")
@@ -87,7 +85,6 @@ export async function editLabel(
       },
     });
 
-    revalidateTag("");
     return { success: true };
   } catch (error) {
     if (error instanceof Error && error.cause == "server error")

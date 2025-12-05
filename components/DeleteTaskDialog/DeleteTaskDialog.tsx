@@ -14,6 +14,7 @@ import { Label } from "../ui/label";
 import { AlertCircle, LoaderCircle } from "lucide-react";
 import { useState } from "react";
 import { deleteTask } from "./action";
+import { useRouter } from "next/navigation";
 
 function DeleteTaskDialog({
   triggerChild,
@@ -22,6 +23,7 @@ function DeleteTaskDialog({
   triggerChild: React.ReactNode;
   taskId: string;
 }) {
+  const router = useRouter();
   const [btnLoadingState, setBtnLoadingState] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -31,6 +33,7 @@ function DeleteTaskDialog({
       await deleteTask(taskId);
       setBtnLoadingState(false);
       setOpen(false);
+      router.refresh();
     } catch (error) {
       console.log(error);
       setBtnLoadingState(false);

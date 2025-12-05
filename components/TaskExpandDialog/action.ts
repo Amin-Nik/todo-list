@@ -2,7 +2,6 @@
 import { prisma } from "../../lib/prisma";
 import { verifySession } from "../../lib/session";
 import { Task } from "@prisma/client";
-import { revalidateTag } from "next/cache";
 
 export async function editTask(data: Task, oldData: Task) {
   await verifySession();
@@ -22,7 +21,6 @@ export async function editTask(data: Task, oldData: Task) {
       },
       data: theData,
     });
-    revalidateTag("");
     return { success: true };
   } catch (error) {
     if (error instanceof Error && error.cause == "server error")
@@ -46,7 +44,6 @@ export async function addTask(data: Task) {
     await prisma.task.create({
       data: { ...theData, userId },
     });
-    revalidateTag("");
     return { success: true };
   } catch (error) {
     if (error instanceof Error && error.cause == "server error")

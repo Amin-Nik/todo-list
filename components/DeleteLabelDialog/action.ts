@@ -1,7 +1,6 @@
 "use server";
 import { prisma } from "../../lib/prisma";
 import { verifySession } from "../../lib/session";
-import { revalidateTag } from "next/cache";
 
 export async function deleteLabel(labelData: string[], currentLabel: string) {
   const userId = await verifySession();
@@ -35,6 +34,5 @@ export async function deleteLabel(labelData: string[], currentLabel: string) {
     },
   });
 
-  revalidateTag("");
   return deletedLabel;
 }
