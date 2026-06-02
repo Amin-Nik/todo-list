@@ -2,7 +2,7 @@
 
 ### ![ScreenShot](public/TodoList-Screenshot.png) A simple full-stack Todo List app built with Next.js and TypeScript
 
-## **[Click to See Live Demo](https://todo-list-five-theta-20.vercel.app/)**
+## **[Click to See Live Demo](https://amin-nik-todo-list.vercel.app/)**
 
 ### Technologies and Features:
 
