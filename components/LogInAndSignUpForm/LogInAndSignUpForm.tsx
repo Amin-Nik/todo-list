@@ -56,7 +56,7 @@ function LogInAndSignUpForm({ isSignUp }: { isSignUp: boolean }) {
   };
 
   return (
-    <section className="h-dvh w-dvw flex justify-center items-center gap-10 perspective-distant bg-[url(/background-pencil.png)]">
+    <section className="h-dvh w-dvw flex justify-center items-center gap-10 perspective-distant">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-around sm:w-90 sm:h-120 sm:p-10 w-80 h-110 p-8! rounded-xl border border-gray-300 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] bg-white/93"
